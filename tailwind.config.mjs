@@ -10,6 +10,10 @@ export default {
 					'verde-agua' : '#0F9178'
 
 				}
+			},
+			fontFamily:{
+				"fuente1":'Hedvig Letters Serif, serif',
+				"fuente2":'Crimson Text, serif'
 			}
 		},
 	},

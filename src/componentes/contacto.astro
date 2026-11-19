@@ -12,25 +12,24 @@
             <form action="" id="formulario">
                 <div class="flex flex-col mb-5">
                     <label for="nombre">Nombre:</label>
-                    <input name="nombre" id="nombre" class="border border-green-800 rounded-xl h-8 p-3" type="text">
+                    <input name="nombre" id="nombre" class="border border-green-800 rounded-xl h-8 p-3" type="text" autocomplete="name" required>
                 </div>
                 <div class="flex flex-col mb-5">
                     <label for="telefono">Telefono:</label>
-                    <input name="telefono" id="telefono" class="border border-green-800 rounded-xl h-8 p-3" type="text">
+                    <input name="telefono" id="telefono" class="border border-green-800 rounded-xl h-8 p-3" type="tel" autocomplete="tel">
                 </div>
                 <div class="flex flex-col mb-5">
                     <label for="email">E-mail:</label>
-                    <input name="email" id="email" class="border border-green-800 rounded-xl h-8 p-3" type="text">
+                    <input name="email" id="email" class="border border-green-800 rounded-xl h-8 p-3" type="email" autocomplete="email" required>
                 </div>
                 <div class="flex flex-col mb-5">
                     <label for="mensaje">Mensaje:</label>
-                    <textarea name="mensaje" id="mensaje" class="w-full h-44 border border-green-800 rounded-xl p-3"></textarea>
+                    <textarea name="mensaje" id="mensaje" class="w-full h-44 border border-green-800 rounded-xl p-3" required></textarea>
                 </div>
                 <button type="submit" class="flex border border-black bg-portfolio-verde-agua text-white w-fit px-4 py-2 mx-auto rounded-2xl focus:bg-green-800">
                     Enviar!
                 </button>
             </form>
-            <a class="opacity-0" id="correo" href="mailto:ignaciozamo1@gmail.com">mail</a>
         </div>
     </div>
 

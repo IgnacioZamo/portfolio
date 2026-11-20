@@ -1,18 +1,25 @@
 ---
-import Layout from "../componentes/Layout.astro"
-import Header from "../componentes/header.astro"
-import Inicio from "../componentes/inicio.astro"
-import SobreMi from "../componentes/sobreMi.astro"
-import Contacto from "../componentes/contacto.astro";
-import Footer from "../componentes/footer.astro"
+/*
+  Home (/)
+  Cada sección vive en su carpeta dentro de src/componentes/secciones/,
+  con su markup, estilos y script juntos.
+*/
+import Layout from "@layouts/Layout.astro";
+import Header from "@componentes/comunes/header/Header.astro";
+import Footer from "@componentes/comunes/footer/Footer.astro";
+
+import Inicio from "@componentes/secciones/inicio/Inicio.astro";
+import SobreMi from "@componentes/secciones/sobre-mi/SobreMi.astro";
+import Contacto from "@componentes/secciones/contacto/Contacto.astro";
 ---
 
 <Layout>
-	<Header/>
+	<Header />
 	<main id="contenido">
-		<Inicio/>
-		<SobreMi/>
-		<Contacto/>
+		{/* Comentarios con llaves: no se publican en el HTML */}
+		<Inicio />      {/* #inicio: presentación, foto y llamados a la acción */}
+		<SobreMi />     {/* #sobre-mi: perfil, cifras y áreas de gestión */}
+		<Contacto />    {/* #contacto: redes y formulario (mailto) */}
 	</main>
-	<Footer/>
+	<Footer />
 </Layout>

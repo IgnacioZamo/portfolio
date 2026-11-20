@@ -1,3 +1,6 @@
+// Header: abre/cierra el menú mobile (Escape, clic afuera o al elegir un enlace)
+// y resalta en el menú la sección de la home que se está viendo.
+
 const boton = document.querySelector("#boton");
 const menuResponsive = document.querySelector("#menu-responsive");
 

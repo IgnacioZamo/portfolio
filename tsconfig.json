@@ -1,3 +1,14 @@
 {
-  "extends": "astro/tsconfigs/base"
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    // Alias de carpetas: los imports no dependen de cuántos "../" haya y sobreviven a mover archivos
+    "paths": {
+      "@layouts/*": ["src/layouts/*"],
+      "@componentes/*": ["src/componentes/*"],
+      "@data/*": ["src/data/*"],
+      "@scripts/*": ["src/scripts/*"],
+      "@styles/*": ["src/styles/*"]
+    }
+  }
 }

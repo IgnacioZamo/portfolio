@@ -1,6 +1,10 @@
 ---
+/*
+  Sección Proyectos web (página /proyectos): intro, filtro por categoría y grilla.
+  El filtro funciona con filtroProyectos.js (data-filtro / data-categoria).
+*/
 // Para sumar un proyecto alcanza con agregarlo en src/data/proyectos.json
-import proyectos from "../data/proyectos.json";
+import proyectos from "@data/proyectos.json";
 
 const categorias = {
   proyecto: { texto: "Proyecto", clase: "" },
@@ -160,4 +164,4 @@ const filtros = [
   }
 </style>
 
-<script src="./funciones/filtroProyectos.js"></script>
+<script src="./filtroProyectos.js"></script>

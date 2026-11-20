@@ -1,18 +1,23 @@
 ---
-import Layout from "../componentes/Layout.astro"
-import Header from "../componentes/header.astro"
+/*
+  Página /trayectoria: hoja de vida con pestañas (Experiencia, Formación, Skills y Muestras).
+  Los contenidos se editan en src/data/ (experiencia.json, formacion.json, skills.json, muestras.json).
+*/
+import Layout from "@layouts/Layout.astro";
+import Header from "@componentes/comunes/header/Header.astro";
+import Footer from "@componentes/comunes/footer/Footer.astro";
+
 // Se importa con otro nombre: "Trayectoria" choca con el nombre que Astro le da a esta página
-import SeccionTrayectoria from "../componentes/trayectoria/Trayectoria.astro"
-import Footer from "../componentes/footer.astro"
+import SeccionTrayectoria from "@componentes/secciones/trayectoria/Trayectoria.astro";
 ---
 
 <Layout
 	titulo="Trayectoria - Ignacio Zamo"
 	descripcion="Experiencia laboral, formación, skills y muestras de trabajo de Ignacio Zamo: más de 10 años en administración y soporte operativo."
 >
-	<Header/>
+	<Header />
 	<main id="contenido">
-		<SeccionTrayectoria/>
+		<SeccionTrayectoria />
 	</main>
-	<Footer/>
+	<Footer />
 </Layout>

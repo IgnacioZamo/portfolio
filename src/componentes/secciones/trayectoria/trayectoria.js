@@ -1,6 +1,6 @@
 // Pestañas de Trayectoria: patrón ARIA "tabs" con activación automática
 // (flechas, Inicio y Fin mueven el foco y abren la pestaña).
-import { registrarEvento } from "./analitica.js";
+import { registrarEvento } from "@scripts/analitica.js";
 
 const listaTabs = document.querySelector("[data-tabs]");
 

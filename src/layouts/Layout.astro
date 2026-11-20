@@ -1,10 +1,14 @@
 ---
-import GoogleAnalytics from "../componentes/googleAnalytics.astro";
-import "../styles/global.css";
+/*
+  Layout base de todas las páginas: <head> (SEO, fuentes, íconos, Analytics),
+  fondo decorativo y scripts globales. Cada página puede pasar su título y descripción.
+*/
+import GoogleAnalytics from "@componentes/comunes/GoogleAnalytics.astro";
+import "@styles/global.css";
 
 interface Props {
-  titulo?: string;
-  descripcion?: string;
+  titulo?: string;       // <title> y og:title
+  descripcion?: string;  // meta description y og:description
 }
 
 const {
@@ -46,7 +50,8 @@ const imagenOg = "https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg";
 			<div class="glow glow-b"></div>
 		</div>
 		<slot />
-		<script src="./funciones/estrellas.js"></script>
-		<script src="./funciones/eventos.js"></script>
+		{/* Scripts globales: fondo de estrellas y medición de clics (src/scripts/) */}
+		<script src="../scripts/estrellas.js"></script>
+		<script src="../scripts/eventos.js"></script>
 	</body>
 </html>

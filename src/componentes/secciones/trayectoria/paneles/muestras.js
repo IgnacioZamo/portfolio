@@ -1,6 +1,6 @@
 // Modal de Muestras: abre la imagen, el video o el embed de YouTube en grande.
 // El multimedia se crea recién al abrir, así los videos no se descargan antes de tiempo.
-import { registrarEvento } from "./analitica.js";
+import { registrarEvento } from "@scripts/analitica.js";
 
 const modal = document.querySelector("#modal-muestra");
 

@@ -8,7 +8,7 @@
   (los archivos locales van en public/muestras/). Mientras "src" esté vacío se
   muestra la vista previa dibujada con CSS indicada en "vistaPrevia".
 */
-import muestras from "../../data/muestras.json";
+import muestras from "@data/muestras.json";
 
 const filasPlanilla = [
   ["1024", "████████", "Operaciones", "03/2022", "176"],
@@ -76,7 +76,7 @@ const filasPlanilla = [
   })}
 </ul>
 
-<!-- Modal (lightbox) para ver la imagen o el video en grande: funciones/muestras.js -->
+<!-- Modal (lightbox) para ver la imagen o el video en grande: muestras.js -->
 <dialog id="modal-muestra" class="modal" aria-labelledby="modal-muestra-titulo">
   <div class="modal-caja">
     <div class="modal-media" data-modal-media></div>
@@ -282,4 +282,4 @@ const filasPlanilla = [
   }
 </style>
 
-<script src="../funciones/muestras.js"></script>
+<script src="./muestras.js"></script>

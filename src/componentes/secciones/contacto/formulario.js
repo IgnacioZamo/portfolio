@@ -1,4 +1,7 @@
-import { registrarEvento } from "./analitica.js"
+// Formulario de contacto: sin backend. Al enviar, abre el cliente de correo (mailto)
+// con los datos cargados y registra el envío en Analytics.
+
+import { registrarEvento } from "@scripts/analitica.js"
 
 const form = document.querySelector("#formulario")
 const DESTINATARIO = "ignaciozamo1@gmail.com"

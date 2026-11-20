@@ -1,6 +1,10 @@
 ---
-// ID de medición de la propiedad GA4 (Administrar → Flujos de datos en analytics.google.com)
-const GA_ID = "G-4W31V97627";
+/*
+  Google Analytics 4 cargado con Partytown (en un web worker, para no frenar la página).
+  Los eventos personalizados se envían desde src/scripts/analitica.js.
+*/
+// El ID se configura en src/data/sitio.js
+import { GA_ID } from "@data/sitio.js";
 
 // Solo en el sitio publicado: así las visitas mientras se desarrolla (npm run dev) no ensucian las métricas
 const medir = import.meta.env.PROD;

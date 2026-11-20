@@ -1,17 +1,23 @@
 ---
-import Layout from "../componentes/Layout.astro"
-import Header from "../componentes/header.astro"
-import Portfolio from "../componentes/portfolio.astro"
-import Footer from "../componentes/footer.astro"
+/*
+  Página /proyectos: desarrollos web con filtro por categoría.
+  Para sumar un proyecto, agregarlo en src/data/proyectos.json.
+*/
+import Layout from "@layouts/Layout.astro";
+import Header from "@componentes/comunes/header/Header.astro";
+import Footer from "@componentes/comunes/footer/Footer.astro";
+
+// Se importa con otro nombre: "Proyectos" choca con el nombre que Astro le da a esta página
+import SeccionProyectos from "@componentes/secciones/proyectos/Proyectos.astro";
 ---
 
 <Layout
 	titulo="Proyectos web - Ignacio Zamo"
 	descripcion="Proyectos web de Ignacio Zamo: landing pages, prácticas con JavaScript y desarrollos en equipo, con demo y código en GitHub."
 >
-	<Header/>
+	<Header />
 	<main id="contenido">
-		<Portfolio/>
+		<SeccionProyectos />
 	</main>
-	<Footer/>
+	<Footer />
 </Layout>

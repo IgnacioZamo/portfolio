@@ -1,9 +1,13 @@
 ---
-import { iconos } from "../../data/iconos.js";
-import PanelExperiencia from "./PanelExperiencia.astro";
-import PanelFormacion from "./PanelFormacion.astro";
-import PanelSkills from "./PanelSkills.astro";
-import PanelMuestras from "./PanelMuestras.astro";
+/*
+  Sección Trayectoria (página /trayectoria): encabezado, pestañas y paneles.
+  Cada panel es un componente en ./paneles/; la lógica de pestañas está en trayectoria.js.
+*/
+import { iconos } from "@data/iconos.js";
+import PanelExperiencia from "./paneles/PanelExperiencia.astro";
+import PanelFormacion from "./paneles/PanelFormacion.astro";
+import PanelSkills from "./paneles/PanelSkills.astro";
+import PanelMuestras from "./paneles/PanelMuestras.astro";
 
 // El orden define el de las pestañas; la primera queda abierta por defecto
 const pestanas = [
@@ -95,7 +99,7 @@ const pestanas = [
   .tabs button.on { color: #04121A; }
   .tabs button:focus-visible { outline-offset: -2px; }
 
-  /* Indicador con gradiente que se desliza hasta la pestaña activa (posición en funciones/trayectoria.js) */
+  /* Indicador con gradiente que se desliza hasta la pestaña activa (posición en trayectoria.js) */
   .tab-ink {
     position: absolute;
     z-index: 0;
@@ -154,4 +158,4 @@ const pestanas = [
   }
 </style>
 
-<script src="../funciones/trayectoria.js"></script>
+<script src="./trayectoria.js"></script>

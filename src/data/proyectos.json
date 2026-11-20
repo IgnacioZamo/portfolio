@@ -1,0 +1,58 @@
+[
+  {
+    "titulo": "InteriorZam",
+    "descripcion": "Landing Page de una pagina web de decoracion de interiores",
+    "categoria": "proyecto",
+    "imagen": "https://i.ibb.co/KxrQBtr/Captura-de-pantalla-2025-01-15-232044.png",
+    "demo": "https://interiorzam.netlify.app/",
+    "codigo": "https://github.com/IgnacioZamo/CONS"
+  },
+  {
+    "titulo": "Carrito con JavaScript",
+    "descripcion": "Carrito de compras, cuyo objetivo era desafiarme en el manejo del DOM utilizando JavaScript",
+    "categoria": "proyecto",
+    "imagen": "https://i.ibb.co/Ws6B3xy/carrito1-2.png",
+    "demo": "https://carrito1astro.netlify.app/",
+    "codigo": "https://github.com/IgnacioZamo/carritoAstro1"
+  },
+  {
+    "titulo": "EcoEmbalajes",
+    "descripcion": "Web ficticia sobre una empresa que se dedica a fabricar cajas de carton para distintos rubros",
+    "categoria": "proyecto",
+    "imagen": "https://i.ibb.co/svJB1ph/Eco-Embalajes-vista-previa.png",
+    "demo": "https://eco-embalajes.netlify.app/",
+    "codigo": "https://github.com/IgnacioZamo/Eco-Embalajes"
+  },
+  {
+    "titulo": "Rey del asado",
+    "descripcion": "Web sobre un restaurante ficticio, que habla sobre el menú, servicios y calidad del mismo",
+    "categoria": "proyecto",
+    "imagen": "https://i.ibb.co/Gsp34PJ/reydelasado.png",
+    "demo": "https://reydelasado.netlify.app/",
+    "codigo": "https://github.com/IgnacioZamo/reyDelAsado2"
+  },
+  {
+    "titulo": "Calculadora Simple",
+    "descripcion": "Calculadora simple desarrollada en mis primeras practicas utilizando JavaScript",
+    "categoria": "practica",
+    "imagen": "https://i.ibb.co/R0HhS5B/calculadroa-Simple.png",
+    "demo": "https://ignaciozamo.github.io/calculadoraSimple/",
+    "codigo": "https://github.com/IgnacioZamo/calculadoraSimple"
+  },
+  {
+    "titulo": "Generador de contraseñas",
+    "descripcion": "Programa que genera contraseñas personalizable",
+    "categoria": "practica",
+    "imagen": "https://i.ibb.co/q97zQNc/generador-pass.png",
+    "demo": "https://ignaciozamo.github.io/generarContrase-as/",
+    "codigo": "https://github.com/IgnacioZamo/generarContrase-as"
+  },
+  {
+    "titulo": "Zelectric",
+    "descripcion": "Web de mi negocio/emprendimiento de productos electronicos, el cual desarrolle en equipo junto a otros profesionales.",
+    "categoria": "equipo",
+    "imagen": "https://i.ibb.co/zJP0grz/generador-pass.png",
+    "demo": "https://zelectric-sf.netlify.app/",
+    "codigo": "https://github.com/IgnacioZamo/zelectric"
+  }
+]

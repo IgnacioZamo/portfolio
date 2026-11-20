@@ -1,50 +1,127 @@
-<div id="inicio" class="w-full h-definido bg-fixed bg-cover flex justify-center items-center" style="background-image: url(https://www.epitech-it.es/wp-content/uploads/2021/01/cuantos-lenguajes-de-programacion-existen.jpg); background-position: bottom">
-        <div class="bg-gray-900/70 h-full w-full top-0">
-            <div class="h-full w-2/3 rounded mx-auto flex justify-center items-center  gap-5">
-                <div class="lg:w-64 lg:h-64 w-40 h-40 bg-cover bg-center rounded-full mt-8 border" style="background-image: url('https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg');">
-                  </div>
-                <div class="flex flex-col text-start gap-1">
-                    <h2 class=" lg:text-4xl text-2xl text-white font-bold text-start">¡Hola mundo!</h2>
-                    <h2 class=" lg:text-4xl text-2xl text-portfolio-verde-agua font-bold text-start">Soy Ignacio Zamo</h2>
-                    <p class=" lg:text-lg text-sm text-white text-end font-bold">Front End Developer | Junior</p>
-                </div>
-            </div>
-        </div>
-</div>
-<div class="w-full lg:h-72 bg-portfolio-azul-oscuro2">
-    <div class="lg:w-3/4 lg:pb-10 pb-5 w-11/12 h-full m-auto">
-        <h2 class="lg:text-5xl sm:text-4xl text-2xl text-portfolio-verde-agua font-bold mb-10 pt-8 font-fuente2">Desafiando Fronteras, buscando crecimiento</h2>
-        <p class="lg:text-2xl sm:text-xl text-lg text-slate-200">
-          De administrador a apasionado desarrollador web. Mi último año ha sido un intenso viaje hacia la programación, transformando no solo mi carrera, sino también mi identidad. Me desafío a aprender y aportar constantemente, buscando la excelencia en cada línea de código.
-        </p>
+<section id="inicio" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Administrativo | Desarrollador Web Jr.</span>
+      <h1>¡Hola mundo!<br><span class="grad">Soy Ignacio Zamo</span></h1>
+      <p class="lead">Técnico Superior en Gestión de las Organizaciones con <b>más de 10 años en administración</b>: gestión de personal, datos y documentación. Ordeno procesos, convierto números en reportes claros y sumo <b>herramientas digitales e IA</b> para trabajar mejor.</p>
+      <div class="cta">
+        <a href="/trayectoria" class="btn btn-primary">Ver mi trayectoria</a>
+        <a href="#contacto" class="btn btn-ghost">Contactarme</a>
+      </div>
+      <div class="meta">
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Santa Fe, Argentina
+        </span>
+        <span class="chip ok"><span class="pulse" aria-hidden="true"></span>Disponible para nuevas oportunidades</span>
+      </div>
     </div>
-</div>
-<div style="overflow: hidden;">
-    <svg
-      preserveAspectRatio="none"
-      viewBox="0 0 1200 120"
-      xmlns="http://www.w3.org/2000/svg"
-      style="fill: #0C3466; width: 172%; height: 80px;"
-    >
-      <path
-      d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z"
-      opacity=".25"
-    />
-      <path
-        d="M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z"
-        opacity=".5"
-      />
-      <path d="M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" />
-    </svg>
-  </div>
 
+    <div class="hero-card">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>ignacio.astro</span></div>
+      <!-- Imagen principal (LCP): carga inmediata, sin lazy -->
+      <img class="photo" src="https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg" alt="Foto de Ignacio Zamo" width="600" height="600" fetchpriority="high" decoding="async">
+      <div class="code">
+        <p><span class="k">const</span> <span class="v">ignacio</span> = &#123;</p>
+        <p>&nbsp;&nbsp;perfil: <span class="s">"Administrativo"</span>,</p>
+        <p>&nbsp;&nbsp;herramientas: [<span class="s">"Excel"</span>, <span class="s">"Power BI"</span>],</p>
+        <p>&nbsp;&nbsp;plus: <span class="s">"Desarrollo web + IA"</span>,</p>
+        <p>&nbsp;&nbsp;organizado: <span class="b">true</span></p>
+        <p>&#125;;</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-    .h-definido{
-        height: 32rem;
-    }
-    .h-definido1{
-        height:40rem ;
-    }
-</style>
+  .hero { padding: 56px 0 40px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 10px var(--teal);
+  }
+  h1 {
+    font: 700 clamp(42px, 5.6vw, 74px)/1.02 var(--f-display);
+    letter-spacing: -.035em;
+    margin: 26px 0 22px;
+  }
+  .lead { font-size: 17px; color: var(--muted); max-width: 560px; }
+  .lead b { color: var(--text); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 26px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px; }
 
+  /* Foto en marco tipo ventana de editor */
+  .hero-card {
+    position: relative;
+    max-width: 420px;
+    margin: 10px 0 0;
+    padding: 14px;
+    border-radius: 26px;
+    background: linear-gradient(160deg, rgba(45, 212, 191, .5), rgba(99, 102, 241, .25) 60%, rgba(148, 163, 184, .1));
+  }
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 25px;
+    background: var(--bg-2);
+  }
+  .hero-card > * { position: relative; }
+  .win-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 6px 14px;
+    font: 500 12px var(--f-mono);
+    color: var(--dim);
+  }
+  .win-bar i { width: 11px; height: 11px; border-radius: 50%; background: #334155; }
+  .win-bar i:nth-child(1) { background: #F87171; }
+  .win-bar i:nth-child(2) { background: #FBBF24; }
+  .win-bar i:nth-child(3) { background: #34D399; }
+  .win-bar span { margin-left: auto; }
+  .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 16px;
+    filter: saturate(.9);
+  }
+  .code {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(7, 12, 22, .92);
+    border: 1px solid var(--line-strong);
+    font: 500 11.5px/1.7 var(--f-mono);
+    color: var(--muted);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, .7);
+  }
+  .code .k { color: #C084FC; }
+  .code .v { color: var(--cyan); }
+  .code .s { color: var(--teal); }
+  .code .b { color: #FBBF24; }
+
+  @media (min-width: 641px) {
+    .hero { padding: 96px 0 72px; }
+    .lead { font-size: 19px; }
+    .hero-card { margin: 0 0 0 46px; }
+    .code { left: -46px; bottom: 34px; padding: 16px 20px; font-size: 13px; }
+  }
+
+  @media (min-width: 1025px) {
+    .hero-grid { grid-template-columns: 1.15fr .85fr; }
+    .hero-card { max-width: none; margin: 0; }
+  }
+</style>

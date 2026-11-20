@@ -1,0 +1,47 @@
+{
+  "titulos": [
+    {
+      "periodo": "2015 — 2017",
+      "titulo": "Técnico Superior en Gestión de las Organizaciones",
+      "institucion": "Colegio San José Adoratrices",
+      "nivel": "Terciario",
+      "puntos": [
+        "Administración de empresas, recursos humanos y gestión organizacional.",
+        "Liquidación de sueldos, estadísticas, contabilidad básica y análisis de resultados."
+      ]
+    },
+    {
+      "periodo": "2008 — 2013",
+      "titulo": "Técnico Informático",
+      "institucion": "E.E.T. N° 478 Dr. Nicolás Avellaneda",
+      "nivel": "Secundario",
+      "puntos": [
+        "Hardware, software, mantenimiento de equipos y soporte técnico.",
+        "Herramientas ofimáticas (Excel, Word) y sistemas operativos."
+      ]
+    }
+  ],
+  "cursos": [
+    {
+      "periodo": "2025",
+      "titulo": "Power BI",
+      "institucion": "Coderhouse",
+      "nivel": "Curso",
+      "puntos": ["Tableros de control dinámicos, modelado de datos y medidas con lenguaje DAX."]
+    },
+    {
+      "periodo": "2024",
+      "titulo": "DOM en JavaScript",
+      "institucion": "Codigofacilito",
+      "nivel": "Curso",
+      "puntos": ["JavaScript, manipulación del DOM, interactividad web y lógica de programación."]
+    },
+    {
+      "periodo": "2022",
+      "titulo": "Bootcamp Desarrollo Web",
+      "institucion": "Coderhouse",
+      "nivel": "Curso",
+      "puntos": ["HTML, CSS, diseño y estructura de páginas web, fundamentos de desarrollo frontend."]
+    }
+  ]
+}

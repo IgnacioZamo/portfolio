@@ -1,0 +1,81 @@
+[
+  {
+    "puesto": "Administrativo de Personal",
+    "empresa": "CAPITEL S.A.",
+    "desde": "Dic 2021",
+    "hasta": "Oct 2026",
+    "actual": true,
+    "tareas": [
+      "Gestión y actualización de la base de datos de personal y de los legajos laborales.",
+      "Liquidación y control de horas trabajadas, quincenas y altas de empleados.",
+      "Administración de documentación laboral, recibos de sueldo y registros internos.",
+      "Elaboración de estadísticas, reportes mensuales y seguimiento de indicadores.",
+      "Gestión de accidentes laborales y denuncias ante la ART.",
+      "Coordinación y homologación de exámenes preocupacionales.",
+      "Control y archivo de documentación del personal, manteniendo registros ordenados y actualizados."
+    ],
+    "tags": ["RR.HH.", "Excel", "Reportes", "Indicadores"]
+  },
+  {
+    "puesto": "Emprendimiento propio — Gestión administrativa",
+    "empresa": "Zelectric",
+    "desde": "Dic 2020",
+    "hasta": "Mar 2022",
+    "tareas": [
+      "Atención al cliente y seguimiento de clientes.",
+      "Administración general del negocio, control de proveedores y operaciones comerciales.",
+      "Gestión de stock, caja, pagos y reinversión de capital.",
+      "Publicación y administración de productos en redes sociales; coordinación de ventas."
+    ],
+    "tags": ["Emprendimiento", "Stock", "Ventas", "Redes"]
+  },
+  {
+    "puesto": "Administrativo / Community Manager",
+    "empresa": "GOCAR",
+    "desde": "Jun 2020",
+    "hasta": "Dic 2020",
+    "tareas": [
+      "Atención al cliente y gestión administrativa con organización documental.",
+      "Coordinación logística para traslado y entrega de vehículos.",
+      "Administración de redes sociales y publicaciones comerciales; supervisión operativa y apertura del local."
+    ],
+    "tags": ["Logística", "Redes", "Atención al cliente"]
+  },
+  {
+    "puesto": "Administrativo / Atención al cliente / Community Manager",
+    "empresa": "AGP Inmobiliaria",
+    "desde": "Feb 2018",
+    "hasta": "Nov 2019",
+    "tareas": [
+      "Gestión administrativa de clientes, pagos, cobros y documentación.",
+      "Carga y actualización de información en el sistema interno.",
+      "Seguimiento de procesos administrativos y control de registros.",
+      "Gestión de publicaciones digitales y captación de potenciales clientes."
+    ],
+    "tags": ["Cobranzas", "Sistemas internos", "Marketing digital"]
+  },
+  {
+    "puesto": "Administrativo Contable",
+    "modalidad": "Pasantía",
+    "empresa": "Distribuidora Muller",
+    "desde": "May 2017",
+    "hasta": "Ago 2017",
+    "tareas": [
+      "Carga de datos de clientes, proveedores y facturación en el sistema Tango Gestión.",
+      "Registro y control administrativo de documentación contable."
+    ],
+    "tags": ["Tango Gestión", "Facturación"]
+  },
+  {
+    "puesto": "Administrativo",
+    "modalidad": "Pasantía",
+    "empresa": "Jerárquicos Salud",
+    "desde": "Oct 2016",
+    "hasta": "Mar 2017",
+    "tareas": [
+      "Actualización y mantenimiento de datos en sistema de gestión.",
+      "Soporte administrativo, gestión de registros internos y consultas telefónicas."
+    ],
+    "tags": ["Carga de datos", "Soporte"]
+  }
+]

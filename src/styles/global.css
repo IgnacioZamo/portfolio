@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Estilos globales del portfolio
+   Los mismos valores están en tailwind.config.mjs.
+   Mobile-first: la base es mobile (≤640px) y se amplía con min-width.
+   Breakpoints: tablet ≥641px · desktop ≥1025px (las media queries no admiten
+   variables CSS, por eso se repiten como número).
+   ========================================================================== */
+
+:root {
+  --bg: #070C16;          /* Noche profunda (fondo) */
+  --bg-2: #0B1322;        /* Azul medianoche (bandas) */
+  --surface: #0F1A2C;     /* Superficie de tarjetas */
+  --surface-2: #13223A;   /* Superficie elevada / inputs */
+  --line: rgba(148, 163, 184, .14);
+  --line-strong: rgba(45, 212, 191, .35);
+  --text: #E6EDF6;
+  --muted: #93A3B8;
+  --dim: #5B6B82;
+  --teal: #2DD4BF;        /* Evolución del verde agua original */
+  --teal-deep: #0F9178;   /* Verde agua original de la marca (glows) */
+  --cyan: #38BDF8;
+  --indigo: #818CF8;
+  --grad: linear-gradient(100deg, #2DD4BF 0%, #38BDF8 55%, #818CF8 100%);
+  --radius: 18px;
+  --f-display: 'Space Grotesk', system-ui, sans-serif;
+  --f-body: 'Inter', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --alto-header: 64px;
+}
+
+@media (min-width: 641px) {
+  :root { --alto-header: 76px; }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+svg { width: 18px; height: 18px; flex: none; }
+
+/* Los componentes usan display propio con mayor especificidad (estilos scoped), así que hidden tiene que ganar siempre */
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* El header es sticky: sin este margen, los anclajes quedan tapados */
+section[id] { scroll-margin-top: var(--alto-header); }
+
+main, footer { position: relative; z-index: 1; }
+
+.saltar-contenido {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--teal);
+  color: #04121A;
+  font-weight: 600;
+}
+.saltar-contenido:focus { top: 12px; }
+
+/* ============ Fondo: estrellas + glows ============ */
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fondo-estrellas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: .35;
+  pointer-events: none;
+}
+.glow-a { width: 620px; height: 620px; background: var(--teal-deep); top: -160px; left: -160px; }
+.glow-b { width: 560px; height: 560px; background: #3B4BD8; top: 120px; right: -220px; opacity: .25; }
+
+/* ============ Layout ============ */
+.container { width: calc(100% - 32px); margin-inline: auto; }
+.section { padding: 52px 0; }
+
+@media (min-width: 641px) {
+  .container { width: min(1180px, 100% - 48px); }
+  .section { padding: 72px 0; }
+}
+
+.grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============ Encabezados de sección ============ */
+.head { margin-bottom: 44px; }
+.titulo-seccion {
+  font: 700 clamp(34px, 4.4vw, 54px)/1.08 var(--f-display);
+  letter-spacing: -.03em;
+  margin-top: 14px;
+}
+.sub {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 640px;
+  margin-top: 14px;
+}
+
+.label,
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 12px/1 var(--f-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.eyebrow {
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  padding: 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(45, 212, 191, .08);
+}
+@media (min-width: 641px) {
+  .eyebrow { font-size: 12px; letter-spacing: .14em; padding: 8px 14px; }
+}
+
+/* ============ Botones / chips / tarjetas ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 15px/1 var(--f-body);
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: .25s;
+}
+.btn-sm { padding: 10px 14px; font-size: 14px; border-radius: 10px; }
+.btn-primary {
+  background: var(--grad);
+  color: #04121A;
+  box-shadow: 0 8px 30px -8px rgba(45, 212, 191, .55);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px -10px rgba(45, 212, 191, .7);
+}
+.btn-ghost {
+  border-color: var(--line);
+  background: rgba(15, 26, 44, .6);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--line-strong); color: var(--teal); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--muted);
+  background: rgba(15, 26, 44, .5);
+}
+.chip.ok { color: #A7F3D0; }
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, .2);
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(19, 34, 58, .75), rgba(15, 26, 44, .65));
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.logo { font: 700 17px var(--f-mono); letter-spacing: -.02em; }
+.logo .br { color: var(--teal); }
+@media (min-width: 641px) {
+  .logo { font-size: 20px; }
+}
+
+/* Íconos de "tarjeta" (Sobre mí y soft skills) */
+.ico {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(45, 212, 191, .1);
+  border: 1px solid rgba(45, 212, 191, .25);
+  color: var(--teal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -1,9 +1,20 @@
-<script type='text/partytown'>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+---
+// ID de medición de la propiedad GA4 (Administrar → Flujos de datos en analytics.google.com)
+const GA_ID = "G-4W31V97627";
 
-  gtag('config', 'G-4W31V97627');
-</script >
+// Solo en el sitio publicado: así las visitas mientras se desarrolla (npm run dev) no ensucian las métricas
+const medir = import.meta.env.PROD;
+---
 
-<script type = 'text/partytown' async src="https://www.googletagmanager.com/gtag/js?id=G-4W31V97627"></script>
+{medir && (
+  <>
+    <script is:inline type="text/partytown" define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      // gtag se declara en window para que Partytown pueda reenviarle las llamadas hechas desde la página
+      window.gtag = function gtag() { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", GA_ID);
+    </script>
+    <script is:inline type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+  </>
+)}

@@ -1,30 +1,52 @@
 ---
 import GoogleAnalytics from "../componentes/googleAnalytics.astro";
+import "../styles/global.css";
 
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+}
+
+const {
+  titulo = "Ignacio Zamo - Portfolio",
+  descripcion = "Portfolio de Ignacio Zamo: administrativo con más de 10 años de experiencia y desarrollador web junior. Trayectoria, proyectos y contacto.",
+} = Astro.props;
+const imagenOg = "https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<GoogleAnalytics/>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Portfolio de Ignacio Zamo - Proyectos personales y conocimientos" />
-		<meta property="og:image" content="https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{titulo}</title>
+		<meta name="description" content={descripcion} />
+		<meta name="theme-color" content="#070C16" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_AR" />
+		<meta property="og:title" content={titulo} />
+		<meta property="og:description" content={descripcion} />
+		<meta property="og:image" content={imagenOg} />
+		<meta name="twitter:card" content="summary" />
+		<link rel="icon" type="image/png" href="https://freesvg.org/img/suit_black.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Hedvig+Letters+Serif:opsz@12..24&family=Lora:wght@500&display=swap" rel="stylesheet">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="https://freesvg.org/img/suit_black.png" />
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+		<!-- Devicon: logos de tecnologías (Skills, header y contacto) -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 		<meta name="generator" content={Astro.generator} />
-		<title>Ignacio Zamo - Portfolio</title>
 	</head>
-	<body class="bg-zinc-100 font-fuente1">
+	<body>
+		<a href="#contenido" class="saltar-contenido">Saltar al contenido</a>
+		<!-- Fondo decorativo: el contenedor recorta los glows para que no generen scroll horizontal -->
+		<div class="fondo" aria-hidden="true">
+			<canvas id="stars" class="fondo-estrellas"></canvas>
+			<div class="glow glow-a"></div>
+			<div class="glow glow-b"></div>
+		</div>
 		<slot />
-		
+		<script src="./funciones/estrellas.js"></script>
+		<script src="./funciones/eventos.js"></script>
 	</body>
 </html>
-<style>
-	html{
-		scroll-behavior: smooth;
-	}
-</style>

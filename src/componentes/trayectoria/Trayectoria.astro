@@ -1,0 +1,157 @@
+---
+import { iconos } from "../../data/iconos.js";
+import PanelExperiencia from "./PanelExperiencia.astro";
+import PanelFormacion from "./PanelFormacion.astro";
+import PanelSkills from "./PanelSkills.astro";
+import PanelMuestras from "./PanelMuestras.astro";
+
+// El orden define el de las pestañas; la primera queda abierta por defecto
+const pestanas = [
+  { id: "experiencia", texto: "Experiencia", Panel: PanelExperiencia },
+  { id: "formacion", texto: "Formación", Panel: PanelFormacion },
+  { id: "skills", texto: "Skills", Panel: PanelSkills },
+  { id: "muestras", texto: "Muestras", Panel: PanelMuestras },
+];
+---
+
+<section id="trayectoria" class="section trayectoria" aria-labelledby="titulo-trayectoria">
+  <div class="container">
+    <div class="head">
+      <span class="label">Trayectoria</span>
+      <!-- h1: Trayectoria es una página propia (/trayectoria) -->
+      <h1 id="titulo-trayectoria" class="titulo-seccion">Mi recorrido profesional</h1>
+      <p class="sub">Experiencia, formación y herramientas en un solo lugar. Más de 10 años en administración y soporte operativo, con el plus de la tecnología.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Trayectoria" data-tabs>
+      {pestanas.map(({ id, texto }, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${id}`}
+          data-tab={id}
+          aria-controls={`panel-${id}`}
+          aria-selected={i === 0 ? "true" : "false"}
+          tabindex={i === 0 ? 0 : -1}
+          class:list={{ on: i === 0 }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={iconos[id]} />
+          {texto}
+        </button>
+      ))}
+      <span class="tab-ink" aria-hidden="true"></span>
+    </div>
+
+    <div class="panels">
+      {pestanas.map(({ id, Panel }, i) => (
+        <div class="panel" id={`panel-${id}`} role="tabpanel" aria-labelledby={`tab-${id}`} tabindex="0" hidden={i !== 0}>
+          <Panel />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Al ser la primera sección de su página, toma el mismo aire superior que el hero */
+  .trayectoria { padding-top: 56px; }
+  .head { text-align: left; margin-inline: auto; max-width: 760px; }
+  .sub { margin-inline: auto; }
+
+  /* ===== Pestañas ===== */
+  .tabs {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    width: 100%;
+    gap: 2px;
+    padding: 5px;
+    margin: 0 auto 32px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(11, 19, 34, .8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  .tabs button {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 8px;
+    border: 0;
+    border-radius: 11px;
+    background: none;
+    font: 600 13px var(--f-body);
+    color: var(--muted);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .3s;
+  }
+  .tabs button svg { display: none; }
+  .tabs button:hover { color: var(--text); }
+  .tabs button.on { color: #04121A; }
+  .tabs button:focus-visible { outline-offset: -2px; }
+
+  /* Indicador con gradiente que se desliza hasta la pestaña activa (posición en funciones/trayectoria.js) */
+  .tab-ink {
+    position: absolute;
+    z-index: 0;
+    top: 5px;
+    left: 0;
+    width: 0;
+    height: calc(100% - 10px);
+    border-radius: 11px;
+    background: var(--grad);
+    box-shadow: 0 8px 24px -8px rgba(45, 212, 191, .6);
+    transition: transform .45s cubic-bezier(.65, 0, .35, 1), width .45s cubic-bezier(.65, 0, .35, 1);
+  }
+
+  /* ===== Paneles ===== */
+  .panels { max-width: 920px; margin-inline: auto; }
+  .panel:focus-visible { outline-offset: 8px; }
+  .panel.enter { animation: panelIn .5s cubic-bezier(.2, .7, .2, 1); }
+  .panel.enter :global(:is(.tl-item, .edu, .skill, .soft-card, .as, .sample)) {
+    animation: itemIn .55s cubic-bezier(.2, .7, .2, 1) both;
+  }
+  /* Entrada escalonada: 60 ms entre tarjetas */
+  .panel.enter :global(:is(.tl-item, .edu, .sample, .as):nth-child(2)) { animation-delay: .06s; }
+  .panel.enter :global(:is(.tl-item, .edu, .sample, .as):nth-child(3)) { animation-delay: .12s; }
+  .panel.enter :global(:is(.tl-item, .edu, .as):nth-child(4)) { animation-delay: .18s; }
+  .panel.enter :global(.tl-item:nth-child(n + 5)) { animation-delay: .24s; }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+  @keyframes itemIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel.enter,
+    .panel.enter :global(*) { animation: none !important; }
+    .tab-ink { transition: none; }
+  }
+
+  @media (min-width: 641px) {
+    .trayectoria { padding-top: 96px; }
+    .head { text-align: center; }
+    .tabs {
+      display: flex;
+      width: max-content;
+      max-width: 100%;
+      gap: 4px;
+      padding: 6px;
+      margin-bottom: 48px;
+    }
+    .tabs button { padding: 12px 22px; font-size: 15px; }
+    .tabs button svg { display: block; }
+    .tab-ink { top: 6px; height: calc(100% - 12px); }
+  }
+</style>
+
+<script src="../funciones/trayectoria.js"></script>

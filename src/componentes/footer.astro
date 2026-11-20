@@ -1,11 +1,51 @@
-<div class="w-full h-fit bg-portfolio-azul-oscuro2 ">
-    <div class="flex flex-col justify-center pt-10 gap-2 py-10">
-        <h3 class="text-slate-200 lg:text-4xl text-2xl text-center font-bold font-fuente2">¡GRACIAS!</h3>
-        <p class="text-slate-300 text-center text-sm lg:text-lg font-bold">Por tomarse el tiempo de ver mi portfolio.</p>
-        <p class="text-slate-300 text-center text-sm lg:text-lg font-bold">Si has llegado hasta aquí, es un honor para mí.</p>
-    </div>
-    <div class="">
-        <p class="text-white lg:text-xl text-lg text-end pr-10 pb-5">© 2023 Copyright - Creado por Ignacio Zamo</p>
-    </div>
+---
+// El año se toma al compilar, así el copyright se actualiza con cada build
+const anio = new Date().getFullYear();
+---
 
-</div>
+<footer class="footer">
+  <div class="container">
+    <p class="thanks grad">¡GRACIAS!</p>
+    <p class="texto">Por tomarse el tiempo de ver mi portfolio.<br>Si has llegado hasta aquí, es un honor para mí.</p>
+    <div class="foot-bar">
+      <a href="/#inicio" class="logo small" aria-label="zamoIgnacio, ir al inicio"><span class="br">&lt;</span>zamoIgnacio<span class="br">/&gt;</span></a>
+      <span>© {anio} Copyright — Creado por Ignacio Zamo</span>
+      <!-- #top lleva al principio de cualquier página (no depende de que exista #inicio) -->
+      <a href="#top" class="top">Volver arriba <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 90px 0 36px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, transparent, rgba(15, 145, 120, .08));
+  }
+  .thanks {
+    margin-bottom: 18px;
+    font: 700 clamp(56px, 11vw, 150px)/1 var(--f-display);
+    letter-spacing: -.05em;
+  }
+  .texto { font-size: 17px; color: var(--muted); }
+  .foot-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 70px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--dim);
+  }
+  .logo.small { font-size: 16px; color: var(--text); }
+  .top { color: var(--muted); }
+  .top:hover { color: var(--teal); }
+
+  @media (min-width: 641px) {
+    .foot-bar { justify-content: space-between; text-align: left; }
+  }
+</style>

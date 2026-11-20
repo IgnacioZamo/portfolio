@@ -21,3 +21,6 @@ pnpm-debug.log*
 .DS_Store
 
 imagenes.txt
+
+# material del diseñador (mockups, guía de estilo, capturas): solo de referencia local
+diseno/

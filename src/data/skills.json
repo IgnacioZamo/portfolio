@@ -1,0 +1,35 @@
+{
+  "gestion": [
+    { "titulo": "Documentación y legajos", "texto": "Carga y actualización de datos, control administrativo." },
+    { "titulo": "Reportes y procesos", "texto": "Elaboración de reportes, organización de procesos y archivos digitales." },
+    { "titulo": "Análisis de datos", "texto": "Resolución de incidencias, optimización de procesos, planificación." },
+    { "titulo": "Inteligencia Artificial", "texto": "Prompts efectivos y automatización de tareas técnicas y administrativas." }
+  ],
+  "oficina": [
+    { "nombre": "Excel", "nivel": "intermedio / avanzado", "clase": "xl", "letra": "X" },
+    { "nombre": "Power BI", "clase": "bi", "icono": "powerbi" },
+    { "nombre": "Word", "clase": "wd", "letra": "W" },
+    { "nombre": "Google Workspace", "clase": "gw", "letra": "G" },
+    { "nombre": "Soporte técnico", "clase": "sp", "icono": "monitor" }
+  ],
+  "web": [
+    { "nombre": "HTML", "icono": "devicon-html5-plain colored" },
+    { "nombre": "CSS", "icono": "devicon-css3-plain colored" },
+    { "nombre": "JavaScript", "icono": "devicon-javascript-plain colored" },
+    { "nombre": "Astro", "icono": "devicon-astro-plain icono-astro" },
+    { "nombre": "React", "icono": "devicon-react-original colored" },
+    { "nombre": "Tailwind", "icono": "devicon-tailwindcss-original colored" },
+    { "nombre": "Git", "icono": "devicon-git-plain colored" },
+    { "nombre": "GitHub", "icono": "devicon-github-original icono-claro" },
+    { "nombre": "Netlify", "icono": "devicon-netlify-plain colored" },
+    { "nombre": "Linux", "icono": "devicon-linux-plain icono-claro" }
+  ],
+  "blandas": [
+    { "titulo": "Trabajo en equipo", "icono": "equipo", "texto": "Buena capacidad para trabajar y contribuir eficazmente en un grupo de trabajo" },
+    { "titulo": "Adaptabilidad", "icono": "adaptabilidad", "texto": "Adaptable, aprendizaje rápido, enfrento desafíos con flexibilidad y determinación" },
+    { "titulo": "Empatía", "icono": "empatia", "texto": "Conecto con las emociones de mis pares, facilitando las relaciones interpersonales y creando con ello un ambiente agradable de trabajo" },
+    { "titulo": "Gestión del tiempo", "icono": "tiempo", "texto": "Organizo mis tiempos para ejecutar con eficacia el trabajo a realizar y así alcanzar las metas establecidas" },
+    { "titulo": "Creatividad", "icono": "creatividad", "texto": "Generar ideas como también encontrar soluciones a problemas y compartirlo con mi equipo de trabajo." },
+    { "titulo": "Aprendizaje continuo", "icono": "formacion", "texto": "Estoy en constante desarrollo hace más de 1 año capacitándome en distintas disciplinas de IT" }
+  ]
+}

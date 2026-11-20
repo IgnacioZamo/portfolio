@@ -1,0 +1,285 @@
+---
+/*
+  Muestras de trabajo ofimático. Se cargan desde src/data/muestras.json.
+  Para reemplazar un ejemplo por material real, completar en el JSON:
+    - imagen:  "src": "/muestras/base-personal.webp"
+    - video:   "src": "/muestras/tablero-rrhh.mp4", "poster": "/muestras/tablero-rrhh.webp"
+    - youtube: "tipo": "youtube", "src": "<ID del video no listado>", "poster": opcional
+  (los archivos locales van en public/muestras/). Mientras "src" esté vacío se
+  muestra la vista previa dibujada con CSS indicada en "vistaPrevia".
+*/
+import muestras from "../../data/muestras.json";
+
+const filasPlanilla = [
+  ["1024", "████████", "Operaciones", "03/2022", "176"],
+  ["1031", "██████", "Logística", "06/2022", "168"],
+  ["1047", "█████████", "Administración", "01/2023", "160"],
+  ["1052", "███████", "Operaciones", "09/2023", "184"],
+  ["1066", "█████", "Mantenimiento", "02/2024", "172"],
+];
+---
+
+<p class="panel-intro">Ejemplos reales de mi trabajo ofimático: bases de datos, planillas y tableros de control.</p>
+
+<ul class="samples">
+  {muestras.map((muestra) => {
+    const esVideo = muestra.tipo === "video" || muestra.tipo === "youtube";
+    const portada = muestra.tipo === "imagen" ? muestra.src : muestra.poster;
+    return (
+      <li class:list={["sample", { big: muestra.destacada }]}>
+        <button
+          type="button"
+          class="media"
+          data-muestra
+          data-tipo={muestra.tipo}
+          data-src={muestra.src}
+          data-poster={muestra.poster}
+          data-titulo={muestra.titulo}
+          data-descripcion={muestra.descripcion}
+          aria-label={`Abrir ${esVideo ? "video" : "imagen"}: ${muestra.titulo}`}
+        >
+          <span class="media-preview">
+            {portada ? (
+              <img src={portada} alt="" loading="lazy" decoding="async" />
+            ) : muestra.vistaPrevia === "planilla" ? (
+              <span class="sheet">
+                <span class="sheet-bar"><span class="xl-badge">X</span>Base_personal.xlsx</span>
+                <span class="sheet-grid">
+                  {["Legajo", "Empleado", "Sector", "Alta", "Horas"].map((columna) => <span class="h">{columna}</span>)}
+                  {filasPlanilla.map((fila) => fila.map((celda, i) => <span class:list={{ n: i === 4 }}>{celda}</span>))}
+                </span>
+              </span>
+            ) : muestra.vistaPrevia === "barras" ? (
+              <span class="dash">
+                <span class="kpis"><span><b>1.248</b>Horas</span><span><b>96%</b>Asist.</span><span><b>12</b>Altas</span></span>
+                <span class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </span>
+            ) : (
+              <span class="dash alt">
+                <span class="donut"></span>
+                <span class="lines"><i></i><i></i><i></i></span>
+              </span>
+            )}
+          </span>
+          {esVideo && (
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          )}
+          {muestra.duracion && <span class="dur">{muestra.duracion}</span>}
+        </button>
+        <div class="body">
+          <span class="kind">{muestra.formato}</span>
+          <h4>{muestra.titulo}</h4>
+          <p>{muestra.descripcion}</p>
+        </div>
+      </li>
+    );
+  })}
+</ul>
+
+<!-- Modal (lightbox) para ver la imagen o el video en grande: funciones/muestras.js -->
+<dialog id="modal-muestra" class="modal" aria-labelledby="modal-muestra-titulo">
+  <div class="modal-caja">
+    <div class="modal-media" data-modal-media></div>
+    <div class="modal-pie">
+      <div>
+        <h4 id="modal-muestra-titulo" data-modal-titulo></h4>
+        <p data-modal-descripcion></p>
+      </div>
+      <form method="dialog">
+        <button class="btn btn-ghost btn-sm" type="submit">Cerrar</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .panel-intro { max-width: 760px; margin-bottom: 24px; font-size: 17px; color: var(--muted); }
+
+  .samples { display: grid; grid-template-columns: 1fr; gap: 20px; list-style: none; }
+  .sample {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    transition: .3s;
+  }
+  .sample:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+  .sample .body { display: grid; gap: 6px; padding: 20px 22px; }
+  .sample h4 { font: 600 19px var(--f-display); }
+  .sample p { color: var(--muted); font-size: 14.5px; }
+  .sample.big h4 { font-size: 24px; }
+  .kind { font: 700 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+
+  /* El área visual es un botón: abre el modal */
+  .media {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: none;
+    color: inherit;
+    text-align: left;
+    cursor: zoom-in;
+  }
+  .media:focus-visible { outline-offset: -3px; }
+  .media-preview { display: flex; flex-direction: column; flex: 1; width: 100%; }
+  .media-preview img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
+
+  /* Vista previa de planilla de Excel (ejemplo) */
+  .sheet { display: flex; flex-direction: column; flex: 1; background: #F8FAFC; color: #1E293B; }
+  .sheet-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #107C41;
+    color: #fff;
+    font: 600 13px var(--f-body);
+  }
+  .xl-badge {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    background: #fff;
+    color: #107C41;
+    font: 700 13px var(--f-display);
+  }
+  .sheet-grid { display: grid; grid-template-columns: .7fr 1.3fr 1.2fr .8fr .6fr; font: 500 11px var(--f-body); }
+  .sheet-grid span {
+    padding: 9px 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #E2E8F0;
+    border-right: 1px solid #E2E8F0;
+    color: #334155;
+  }
+  .sheet-grid .h { background: #E8F5EE; font-weight: 700; color: #0F5132; }
+  .sheet-grid .n { text-align: right; font-family: var(--f-mono); }
+
+  /* Vistas previas de tableros de Power BI (ejemplo) */
+  .dash {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    aspect-ratio: 16 / 9;
+    padding: 18px;
+    background: radial-gradient(400px 200px at 80% 0%, rgba(242, 200, 17, .15), transparent), var(--bg-2);
+  }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .kpis span { padding: 8px 10px; border-radius: 8px; background: rgba(148, 163, 184, .08); font-size: 11px; color: var(--muted); }
+  .kpis b { display: block; font: 700 18px var(--f-display); color: var(--text); }
+  .bars { display: flex; flex: 1; align-items: flex-end; gap: 10px; padding: 0 4px; }
+  .bars i { flex: 1; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, #F2C811, #B98F00); }
+  .bars i:nth-child(1) { height: 40%; }
+  .bars i:nth-child(2) { height: 65%; }
+  .bars i:nth-child(3) { height: 52%; }
+  .bars i:nth-child(4) { height: 80%; }
+  .bars i:nth-child(5) { height: 70%; }
+  .bars i:nth-child(6) { height: 92%; }
+  .dash.alt { flex-direction: row; align-items: center; gap: 22px; }
+  .donut {
+    width: 42%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(#2DD4BF 0 45%, #38BDF8 0 72%, #F2C811 0 88%, #334155 0);
+    -webkit-mask: radial-gradient(circle, transparent 48%, #000 49%);
+    mask: radial-gradient(circle, transparent 48%, #000 49%);
+  }
+  .lines { display: grid; flex: 1; gap: 12px; }
+  .lines i { height: 10px; border-radius: 5px; background: rgba(148, 163, 184, .25); }
+  .lines i:nth-child(1) { width: 90%; background: #2DD4BF; }
+  .lines i:nth-child(2) { width: 65%; background: #38BDF8; }
+  .lines i:nth-child(3) { width: 40%; background: #F2C811; }
+
+  .play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin: auto;
+    border-radius: 50%;
+    background: rgba(7, 12, 22, .75);
+    border: 1px solid rgba(255, 255, 255, .25);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    transition: .25s;
+  }
+  .play svg { width: 26px; height: 26px; margin-left: 3px; }
+  .sample:hover .play,
+  .media:focus-visible .play { transform: scale(1.08); background: var(--teal); color: #04121A; }
+  .dur {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .65);
+    font: 600 11.5px var(--f-mono);
+    color: #fff;
+  }
+
+  /* ===== Modal ===== */
+  .modal {
+    width: min(960px, 100% - 32px);
+    max-height: calc(100% - 32px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--line-strong);
+    border-radius: 24px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .8);
+  }
+  .modal::backdrop {
+    background: rgba(7, 12, 22, .8);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .modal[open] { animation: modalIn .3s cubic-bezier(.2, .7, .2, 1); }
+  .modal-media { display: flex; flex-direction: column; background: #000; }
+  /* Los elementos multimedia los crea el JS, por eso se estilan con :global */
+  .modal-media :global(img),
+  .modal-media :global(video) { width: 100%; max-height: 72vh; object-fit: contain; }
+  .modal-media :global(iframe) { width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  .modal-pie {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 22px;
+    border-top: 1px solid var(--line);
+  }
+  .modal-pie h4 { font: 600 19px var(--f-display); }
+  .modal-pie p { margin-top: 4px; font-size: 14.5px; color: var(--muted); }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(14px) scale(.98); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (min-width: 641px) {
+    .sheet-grid { font-size: 13px; }
+    .sheet-grid span { padding: 11px 14px; }
+  }
+
+  @media (min-width: 1025px) {
+    .samples { grid-template-columns: 1fr 1fr; }
+    .sample.big { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; }
+    .sample.big .media { border-bottom: 0; border-right: 1px solid var(--line); }
+    .sample.big .body { align-content: center; padding: 32px; }
+  }
+</style>
+
+<script src="../funciones/muestras.js"></script>

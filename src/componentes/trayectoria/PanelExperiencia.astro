@@ -1,0 +1,119 @@
+---
+// Para sumar un puesto alcanza con agregarlo (arriba de todo) en src/data/experiencia.json
+import experiencia from "../../data/experiencia.json";
+---
+
+<ol class="timeline">
+  {experiencia.map((puesto) => (
+    <li class:list={["tl-item", { current: puesto.actual }]}>
+      <article class="tl-card">
+        <span class="tl-date">{puesto.desde} — {puesto.hasta}</span>
+        <header>
+          <h3>{puesto.puesto}{puesto.modalidad && <em> ({puesto.modalidad})</em>}</h3>
+          <p class="company">{puesto.empresa}</p>
+        </header>
+        <ul class="tareas">
+          {puesto.tareas.map((tarea) => <li>{tarea}</li>)}
+        </ul>
+        <ul class="tags" aria-label="Temas">
+          {puesto.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </article>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline { position: relative; list-style: none; }
+  /* Línea vertical a la izquierda, del verde agua al gris */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--teal), rgba(56, 189, 248, .5) 40%, rgba(148, 163, 184, .12));
+  }
+  .tl-item { position: relative; padding: 0 0 26px 30px; }
+  /* Nodo de la línea de tiempo */
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--teal);
+    box-shadow: 0 0 0 5px rgba(45, 212, 191, .12);
+    transition: background .3s, box-shadow .3s;
+  }
+  /* El nodo se ilumina en el puesto actual y en el que se pasa el mouse (o tiene el foco) */
+  .tl-item.current::before,
+  .tl-item:hover::before,
+  .tl-item:focus-within::before {
+    background: var(--teal);
+    box-shadow: 0 0 0 6px rgba(45, 212, 191, .18), 0 0 24px var(--teal);
+  }
+  /* Mientras se recorre la lista, la luz sigue al mouse: el puesto actual se apaga */
+  .timeline:hover .tl-item.current:not(:hover)::before {
+    background: var(--bg);
+    box-shadow: 0 0 0 5px rgba(45, 212, 191, .12);
+  }
+
+  .tl-card {
+    padding: 22px 20px;
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(19, 34, 58, .7), rgba(15, 26, 44, .6));
+    border: 1px solid var(--line);
+    transition: .3s;
+  }
+  .tl-card:hover { border-color: var(--line-strong); transform: translateX(4px); }
+  .current .tl-card {
+    border-color: rgba(45, 212, 191, .3);
+    box-shadow: 0 20px 60px -30px rgba(45, 212, 191, .5);
+  }
+  .tl-date {
+    display: block;
+    margin-bottom: 8px;
+    font: 500 13px var(--f-mono);
+    color: var(--muted);
+  }
+  .current .tl-date { color: var(--teal); }
+  h3 { font: 600 21px/1.3 var(--f-display); letter-spacing: -.01em; }
+  h3 em { font-style: normal; font-weight: 500; color: var(--muted); }
+  .company { margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--teal); }
+
+  .tareas { display: grid; gap: 7px; margin: 16px 0 18px; list-style: none; }
+  .tareas li { position: relative; padding-left: 20px; font-size: 15.5px; color: var(--muted); }
+  .tareas li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--teal);
+    opacity: .7;
+    transform: rotate(45deg);
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+  .tags li {
+    padding: 5px 11px;
+    border-radius: 999px;
+    font: 500 12.5px var(--f-mono);
+    color: #99F6E4;
+    background: rgba(45, 212, 191, .08);
+    border: 1px solid rgba(45, 212, 191, .22);
+  }
+
+  @media (min-width: 641px) {
+    .tl-item { padding-left: 44px; }
+    .tl-item::before { top: 28px; }
+    .tl-card { padding: 26px 30px; }
+  }
+</style>

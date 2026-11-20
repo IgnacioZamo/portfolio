@@ -1,56 +1,247 @@
-<header class="block">
-    <!-- z-50 de Tailwind: la barra es fija y tiene que quedar por encima de cualquier elemento posicionado de las secciones -->
-    <div class="flex justify-between items-center py-3 px-4 lg:px-8 bg-gradient-to-r from-portfolio-azul-oscuro1 to-portfolio-azul-oscuro2 w-full fixed z-50 mb-10">
-        <div class="flex my-3 ml-4 items-center mr-10">
-            <p class="font-bold text-slate-200 text-2xl">&lt;zamoIgnacio/&gt;</p>
-        </div>
-        <div class="lg:gap-24 gap-10 lg:flex hidden">
-            <ul class="flex justify-end py-4 my-3 mr-5 lg:gap-12 gap-8 xl:gap-24">
-                <li><a href="#inicio" class="font-bold text-slate-200 text-xl hover:text-xl">Inicio</a></li>
-                <li><a href="#portfolio" class="font-bold text-slate-200 text-xl">Portfolio</a></li>
-                <li><a href="#habilidades" class="font-bold text-slate-200 text-xl">Habilidades</a></li>
-                <li><a href="#contacto" class="font-bold text-slate-200 text-xl">Contacto</a></li>
-            </ul>
-            <!-- Es un enlace (no un <button>) porque navega a la descarga; un <a> dentro de <button> es HTML inválido y solo el texto era clickeable -->
-            <a href="https://drive.google.com/uc?id=1rUhVp9TqpK4NSJ1geGoLPA2WZ2YbzfZ1&export=download" class="flex items-center border border-black rounded-lg p-3 my-5 mr-3 bg-portfolio-verde-agua font-bold text-slate-200 text-lg">Descargar mi CV</a>
-        </div>
+---
+import { iconos } from "../data/iconos.js";
 
-        <div class="lg:hidden block mr-5 my-3">
-            <button id="boton" class="">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-10 h-10 text-slate-50 hover:cursor-pointer">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-            </button>
-        </div>
+// Secciones de la home: llevan "/" delante para que también funcionen desde las otras páginas
+const secciones = [
+  { href: "/#inicio", texto: "Inicio" },
+  { href: "/#sobre-mi", texto: "Sobre mí" },
+  { href: "/#contacto", texto: "Contacto" },
+];
+// Páginas propias: la hoja de vida y los desarrollos web, diferenciadas visualmente en el menú
+const paginas = [
+  { href: "/trayectoria", texto: "Trayectoria", icono: "experiencia" },
+  { href: "/proyectos", texto: "Proyectos web", icono: "tecnologia" },
+];
+const CV_URL = "https://drive.google.com/uc?id=1rUhVp9TqpK4NSJ1geGoLPA2WZ2YbzfZ1&export=download";
+
+// Enlace activo al cargar: la página actual, o "Inicio" en la home (después lo actualiza navBar.js al hacer scroll)
+const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
+const esActivo = (href: string) => (ruta === "/" ? href === "/#inicio" : href === ruta);
+const ariaCurrent = (href: string) => (!esActivo(href) ? undefined : href.includes("#") ? "true" : "page");
+---
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/#inicio" class="logo" aria-label="zamoIgnacio, ir al inicio"><span class="br">&lt;</span>zamoIgnacio<span class="br">/&gt;</span></a>
+
+    <nav class="links" aria-label="Principal">
+      <div class="grupo">
+        {secciones.map(({ href, texto }) => (
+          <a href={href} data-nav-link class:list={{ active: esActivo(href) }} aria-current={ariaCurrent(href)}>{texto}</a>
+        ))}
+      </div>
+      <span class="separador" aria-hidden="true"></span>
+      <div class="grupo paginas">
+        {paginas.map(({ href, texto, icono }) => (
+          <a href={href} class:list={["pagina", { active: esActivo(href) }]} aria-current={ariaCurrent(href)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={iconos[icono]} />
+            {texto}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <a class="icon-btn" href="https://github.com/IgnacioZamo?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="GitHub (se abre en otra pestaña)" data-evento="clic_red_social" data-evento-red="github" data-evento-ubicacion="header"><i class="devicon-github-original" aria-hidden="true"></i></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/ignacio-zamo-b91334182/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (se abre en otra pestaña)" data-evento="clic_red_social" data-evento-red="linkedin" data-evento-ubicacion="header"><i class="devicon-linkedin-plain" aria-hidden="true"></i></a>
+      <a class="btn btn-primary btn-sm btn-cv" href={CV_URL} data-evento="descargar_cv" data-evento-ubicacion="header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg>
+        Descargar CV
+      </a>
+      <button id="boton" class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-responsive">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    
-    <div id="menu-responsive" class="bg-gradient-to-b justify-center items-center flex-col from-portfolio-azul-oscuro2 to-portfolio-azul-oscuro1 w-44 h-fit right-0 top-36 rounded-lg fixed shadow-xl hidden z-50">
-        <div id="boton-cerrar-menu" class="ml-auto mt-3 mr-3 mb-3 hover:cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6 text-white">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        </div>
-        <div class="">
-            <ul class="flex flex-col gap-5 justify-center items-center mb-10">
-                <li><a href="#inicio" class="font-bold text-slate-200 text-xl">Inicio</a></li>
-                <li><a href="#portfolio" class="font-bold text-slate-200 text-xl">Portfolio</a></li>
-                <li><a href="#habilidades" class="font-bold text-slate-200 text-xl">Habilidades</a></li>
-                <li><a href="#contacto" class="font-bold text-slate-200 text-xl">Contacto</a></li>
-            </ul>
-            <div class="flex justify-center items-center mb-5">
-                <a href="https://drive.google.com/uc?id=1rUhVp9TqpK4NSJ1geGoLPA2WZ2YbzfZ1&export=download" class="border border-black rounded-lg p-3 bg-portfolio-verde-agua font-bold text-slate-200 text-sm">Descargar mi CV</a>
+  </div>
 
-            </div>
-        </div>
-
-
+  <!-- Menú mobile/tablet: lo controla funciones/navBar.js -->
+  <nav id="menu-responsive" class="menu-movil" aria-label="Menú" hidden>
+    {secciones.map(({ href, texto }) => (
+      <a href={href} data-nav-link class:list={{ active: esActivo(href) }} aria-current={ariaCurrent(href)}>{texto}</a>
+    ))}
+    <div class="menu-paginas">
+      {paginas.map(({ href, texto, icono }) => (
+        <a href={href} class:list={["pagina", { active: esActivo(href) }]} aria-current={ariaCurrent(href)}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={iconos[icono]} />
+          {texto}
+        </a>
+      ))}
     </div>
+    <div class="menu-redes">
+      <a class="icon-btn" href="https://github.com/IgnacioZamo?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="GitHub (se abre en otra pestaña)" data-evento="clic_red_social" data-evento-red="github" data-evento-ubicacion="menu_movil"><i class="devicon-github-original" aria-hidden="true"></i></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/ignacio-zamo-b91334182/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (se abre en otra pestaña)" data-evento="clic_red_social" data-evento-red="linkedin" data-evento-ubicacion="menu_movil"><i class="devicon-linkedin-plain" aria-hidden="true"></i></a>
+      <a class="btn btn-primary btn-sm" href={CV_URL} data-evento="descargar_cv" data-evento-ubicacion="menu_movil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg>
+        Descargar CV
+      </a>
+    </div>
+  </nav>
 </header>
 
 <style>
-    div[id]{
-        scroll-margin-top: 70px;
-    }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(7, 12, 22, .72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    width: calc(100% - 32px);
+    height: var(--alto-header);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .links { display: none; align-items: center; gap: 6px; }
+  .grupo { display: flex; align-items: center; gap: 6px; }
+  .separador { width: 1px; height: 24px; margin: 0 8px; background: var(--line); }
+  .links a,
+  .menu-movil > a {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: .2s;
+  }
+  .links a:hover,
+  .menu-movil > a:hover { color: var(--text); background: rgba(148, 163, 184, .08); }
+  .links a.active,
+  .menu-movil > a.active {
+    color: var(--text);
+    background: rgba(45, 212, 191, .1);
+    box-shadow: inset 0 0 0 1px rgba(45, 212, 191, .25);
+  }
+
+  /* Páginas propias (Trayectoria y Proyectos web): con borde e ícono para diferenciarlas de las secciones */
+  .pagina {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(15, 26, 44, .6);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    transition: .2s;
+  }
+  .pagina svg { width: 16px; height: 16px; color: var(--teal); }
+  .links a.pagina:hover,
+  .menu-paginas .pagina:hover { border-color: var(--line-strong); background: rgba(45, 212, 191, .06); }
+  .links a.pagina.active,
+  .menu-paginas .pagina.active {
+    border-color: rgba(45, 212, 191, .45);
+    background: rgba(45, 212, 191, .12);
+    box-shadow: 0 0 18px -6px rgba(45, 212, 191, .5);
+  }
+  .menu-paginas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .menu-paginas .pagina { justify-content: center; padding: 12px 10px; }
+
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 18px;
+  }
+  .icon-btn:hover { color: var(--teal); border-color: var(--line-strong); }
+  .nav-right .icon-btn,
+  .btn-cv { display: none; }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+  }
+  .burger span {
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .25s, opacity .25s;
+  }
+  /* Con el menú abierto, la hamburguesa se convierte en una X */
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .menu-movil {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 4px;
+    padding: 12px 16px 20px;
+    /* Opaco: un backdrop-filter dentro del header (que ya tiene blur) no se aplica y el texto de atrás se transparenta */
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 40px -20px rgba(0, 0, 0, .8);
+  }
+  .menu-movil > a { padding: 12px 14px; font-size: 16px; }
+  .menu-redes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 641px) {
+    .nav-inner { width: min(1240px, 100% - 48px); }
+    .btn-cv { display: inline-flex; }
+    .menu-movil { padding-inline: 24px; }
+    /* En tablet el botón de CV ya está en la barra */
+    .menu-redes .btn { display: none; }
+  }
+
+  @media (min-width: 1025px) {
+    .links { display: flex; }
+    .links a { white-space: nowrap; }
+    .burger,
+    .menu-movil { display: none !important; }
+  }
+
+  /* Desktop angosto: con los dos grupos de enlaces no entran los íconos de redes (siguen en Contacto) */
+  @media (min-width: 1025px) and (max-width: 1199px) {
+    .nav-inner { gap: 16px; }
+    .links { gap: 2px; }
+    .links a,
+    .pagina { padding: 8px 10px; }
+    .separador { margin: 0 4px; }
+  }
+
+  @media (min-width: 1200px) {
+    .nav-right .icon-btn { display: grid; }
+  }
 </style>
 
 <script src="./funciones/navBar.js"></script>

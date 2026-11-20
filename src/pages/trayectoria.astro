@@ -1,0 +1,18 @@
+---
+import Layout from "../componentes/Layout.astro"
+import Header from "../componentes/header.astro"
+// Se importa con otro nombre: "Trayectoria" choca con el nombre que Astro le da a esta página
+import SeccionTrayectoria from "../componentes/trayectoria/Trayectoria.astro"
+import Footer from "../componentes/footer.astro"
+---
+
+<Layout
+	titulo="Trayectoria - Ignacio Zamo"
+	descripcion="Experiencia laboral, formación, skills y muestras de trabajo de Ignacio Zamo: más de 10 años en administración y soporte operativo."
+>
+	<Header/>
+	<main id="contenido">
+		<SeccionTrayectoria/>
+	</main>
+	<Footer/>
+</Layout>

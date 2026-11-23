@@ -1,8 +1,10 @@
 // Datos generales del sitio que se repiten en varias secciones (header, menú mobile, contacto).
 // Cambiar un enlace acá lo actualiza en todo el portfolio.
 
-// CV en Google Drive (descarga directa)
-export const CV_URL = "https://drive.google.com/uc?id=1rUhVp9TqpK4NSJ1geGoLPA2WZ2YbzfZ1&export=download";
+// CV en Google Drive: "CV - Ignacio Zamo.pdf" (Mi unidad), compartido como
+// "Cualquier usuario que tenga el vínculo – Lector". Para actualizar el CV sin cambiar
+// este link: en Drive, clic derecho → Administrar versiones → Subir nueva versión.
+export const CV_URL = "https://drive.google.com/uc?export=download&id=1G7sKY8Yq-wr0jaAjEyz8C63PVkVH-YEI";
 
 export const REDES = {
   github: "https://github.com/IgnacioZamo?tab=repositories",

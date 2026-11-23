@@ -4,7 +4,8 @@
 */
 
 .footer {
-  padding: 90px 0 36px;
+  /* Abajo deja lugar para el botón flotante de WhatsApp, así no tapa "Volver arriba" */
+  padding: 90px 0 96px;
   text-align: center;
   border-top: 1px solid var(--line);
   background: linear-gradient(180deg, transparent, rgba(15, 145, 120, .08));

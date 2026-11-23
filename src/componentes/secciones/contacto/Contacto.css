@@ -25,10 +25,27 @@
 }
 .contacto .socials a:hover { border-color: var(--line-strong); color: var(--teal); }
 .contacto .socials i { font-size: 18px; }
+/* WhatsApp destacado como la vía más rápida */
+.contacto .socials a.whatsapp { border-color: rgba(37, 211, 102, .35); }
+.contacto .socials a.whatsapp:hover { border-color: rgba(37, 211, 102, .7); color: #86EFAC; }
+.contacto .socials .destacado {
+  margin-left: auto;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(37, 211, 102, .12);
+  font: 600 11px var(--f-mono);
+  color: #86EFAC;
+}
 
+/* ===== Formulario ===== */
 .contacto .form { display: grid; gap: 16px; align-content: start; }
 .contacto .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.contacto label { display: grid; gap: 8px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.contacto .campo { display: grid; gap: 8px; }
+.contacto label { font-size: 14px; font-weight: 500; color: var(--muted); }
+.contacto .req { color: var(--teal); }
+.contacto .opcional { font-weight: 400; color: var(--dim); }
+/* Honeypot anti-spam: fuera de la vista y del lector de pantalla */
+.contacto .oculto { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .contacto input,
 .contacto textarea {
   padding: 14px 16px;
@@ -45,6 +62,51 @@
 .contacto input:focus,
 .contacto textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(45, 212, 191, .12); }
 .contacto .form .btn { justify-content: center; }
+.contacto .form .btn[disabled] { opacity: .7; cursor: progress; transform: none; }
+
+/* Errores por campo: aparecen debajo del campo y lo marcan en rojo */
+.contacto .error { font-size: 13px; color: #FCA5A5; }
+.contacto .error:empty { display: none; }
+.contacto input[aria-invalid="true"],
+.contacto textarea[aria-invalid="true"] { border-color: #F87171; box-shadow: 0 0 0 4px rgba(248, 113, 113, .12); }
+
+.contacto .nota { font-size: 13px; color: var(--dim); }
+
+.contacto .form-error {
+  padding: 14px 16px;
+  border: 1px solid rgba(248, 113, 113, .4);
+  border-radius: 12px;
+  background: rgba(248, 113, 113, .08);
+  font-size: 14px;
+  color: var(--text);
+}
+.contacto .form-error .alternativas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+/* Confirmación de envío */
+.contacto .form-exito {
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: 12px;
+  min-height: 100%;
+  padding: 32px 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(45, 212, 191, .06);
+}
+.contacto .form-exito:focus { outline: none; }
+.contacto .exito-icono {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #04121A;
+}
+.contacto .exito-icono svg { width: 26px; height: 26px; }
+.contacto .form-exito h3 { font: 600 24px/1.2 var(--f-display); }
+.contacto .form-exito p { color: var(--muted); }
 
 @media (min-width: 641px) {
   .contacto .contact { padding: 52px; gap: 56px; }

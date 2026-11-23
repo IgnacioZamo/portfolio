@@ -1,7 +1,9 @@
 ---
 /*
   Sección Contacto (#contacto en la home): redes a la izquierda y formulario a la derecha.
-  El formulario no usa backend: formulario.js arma un mailto con los datos.
+  El formulario se envía con Netlify Forms (el sitio está en Netlify): el mensaje llega
+  sin que la persona tenga que abrir su programa de correo. Las notificaciones por mail se
+  configuran en Netlify → Forms. La validación y el envío están en formulario.js.
 */
 // Estilos de este componente
 import "./Contacto.css";
@@ -23,35 +25,76 @@ import { REDES } from "@data/sitio.js";
             <a href={REDES.github} target="_blank" rel="noopener noreferrer" data-evento="clic_red_social" data-evento-red="github" data-evento-ubicacion="contacto"><i class="devicon-github-original" aria-hidden="true"></i>GitHub</a>
           </li>
           <li>
-            <a href={REDES.whatsapp} target="_blank" rel="noopener noreferrer" data-evento="clic_red_social" data-evento-red="whatsapp" data-evento-ubicacion="contacto">
+            <a class="whatsapp" href={REDES.whatsapp} target="_blank" rel="noopener noreferrer" data-evento="clic_red_social" data-evento-red="whatsapp" data-evento-ubicacion="contacto">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.2Z"/></svg>
               WhatsApp
+              <span class="destacado">Respuesta más rápida</span>
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- El envío arma un mailto con los datos: ver formulario.js -->
-      <form id="formulario" class="form">
-        <div class="two">
-          <label for="nombre">Nombre
-            <input name="nombre" id="nombre" type="text" placeholder="Tu nombre" autocomplete="name" required>
-          </label>
-          <label for="telefono">Teléfono
-            <input name="telefono" id="telefono" type="tel" placeholder="+54 ..." autocomplete="tel">
-          </label>
+      <div class="form-zona">
+        <!--
+          data-netlify: Netlify detecta el formulario al publicar y guarda los mensajes.
+          netlify-honeypot: campo oculto anti-spam (los bots lo completan, las personas no lo ven).
+          Sin JavaScript, el envío igual funciona y Netlify muestra su página de confirmación.
+        -->
+        <form id="formulario" class="form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contacto">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde el portfolio">
+          <p class="oculto" aria-hidden="true">
+            <label>No completar este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <div class="two">
+            <div class="campo">
+              <label for="nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
+              <input name="nombre" id="nombre" type="text" placeholder="Tu nombre" autocomplete="name" required aria-describedby="error-nombre">
+              <span class="error" id="error-nombre"></span>
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono <span class="opcional">(opcional)</span></label>
+              <input name="telefono" id="telefono" type="tel" placeholder="+54 ..." autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="email">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input name="email" id="email" type="email" placeholder="tu@email.com" autocomplete="email" required aria-describedby="error-email">
+            <span class="error" id="error-email"></span>
+          </div>
+          <div class="campo">
+            <label for="mensaje">Mensaje <span class="req" aria-hidden="true">*</span></label>
+            <textarea name="mensaje" id="mensaje" rows="5" placeholder="Contame brevemente qué necesitás..." required aria-describedby="error-mensaje"></textarea>
+            <span class="error" id="error-mensaje"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-enviar>
+            <span data-enviar-texto>Enviar mensaje</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+          <p class="nota"><span aria-hidden="true">*</span> Campos obligatorios. Te respondo al correo que dejes.</p>
+
+          <!-- Aviso si el envío falla (sin conexión, etc.): ofrece otras vías para no perder el mensaje -->
+          <div class="form-error" role="alert" data-form-error hidden>
+            <p><b>No se pudo enviar el mensaje.</b> Probá de nuevo en unos segundos o escribime por otra vía:</p>
+            <div class="alternativas">
+              <a class="btn btn-ghost btn-sm" href="#" data-mailto data-evento="generate_lead" data-evento-metodo="mailto">Enviarlo desde mi correo</a>
+              <a class="btn btn-ghost btn-sm" href={REDES.whatsapp} target="_blank" rel="noopener noreferrer" data-evento="clic_red_social" data-evento-red="whatsapp" data-evento-ubicacion="error_formulario">Escribir por WhatsApp</a>
+            </div>
+          </div>
+        </form>
+
+        <!-- Confirmación después de enviar (la muestra formulario.js) -->
+        <div class="form-exito" data-form-exito tabindex="-1" hidden>
+          <span class="exito-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5 9-10"/></svg>
+          </span>
+          <h3>¡Mensaje enviado<span data-exito-nombre></span>!</h3>
+          <p>Gracias por escribirme. Te voy a responder al correo que dejaste lo antes posible.</p>
+          <button type="button" class="btn btn-ghost btn-sm" data-otro-mensaje>Enviar otro mensaje</button>
         </div>
-        <label for="email">E-mail
-          <input name="email" id="email" type="email" placeholder="tu@email.com" autocomplete="email" required>
-        </label>
-        <label for="mensaje">Mensaje
-          <textarea name="mensaje" id="mensaje" rows="5" placeholder="Contame brevemente qué necesitás..." required></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">
-          Enviar mensaje
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 </section>

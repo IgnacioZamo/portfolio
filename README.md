@@ -30,11 +30,12 @@ src/
 │   ├── comunes/                Partes que se repiten en todas las páginas
 │   │   ├── GoogleAnalytics.astro
 │   │   ├── header/             Header.astro + Header.css + navBar.js (menú mobile y sección activa)
+│   │   ├── whatsapp/           WhatsappFlotante.astro + .css (botón fijo en todas las páginas)
 │   │   └── footer/             Footer.astro + Footer.css
 │   └── secciones/              Una carpeta por sección: .astro (markup) + .css (estilos) + .js
 │       ├── inicio/             Inicio.astro + Inicio.css
 │       ├── sobre-mi/           SobreMi.astro + SobreMi.css
-│       ├── contacto/           Contacto.astro + Contacto.css + formulario.js (mailto)
+│       ├── contacto/           Contacto.astro + Contacto.css + formulario.js (Netlify Forms)
 │       ├── proyectos/          Proyectos.astro + Proyectos.css + filtroProyectos.js
 │       └── trayectoria/        Trayectoria.astro + Trayectoria.css + trayectoria.js (pestañas)
 │           └── paneles/        PanelExperiencia, PanelFormacion, PanelSkills y
@@ -73,6 +74,15 @@ Los imports usan alias definidos en `tsconfig.json`: `@layouts`, `@componentes`,
 - **Cambiar el CV o las redes:** `src/data/sitio.js` (se actualiza en el header, el menú mobile y Contacto).
 - **Sumar un trabajo (pestaña Trabajos):** copiar el video `.mp4` y su portada `.webp` (16:9) en `public/trabajos/` y agregarlo en `trabajos.json` con `src`, `poster` y `duracion`. También admite imágenes (`"tipo": "imagen"`) o el ID de un video de YouTube (`"tipo": "youtube"`).
 - **Medir un botón nuevo en Analytics:** agregarle `data-evento="nombre"` y, si hace falta, `data-evento-*` con los parámetros.
+
+## Formulario de contacto (Netlify Forms)
+
+El formulario envía los mensajes con **Netlify Forms**, sin que la persona tenga que abrir su programa de correo. En el panel de Netlify:
+
+1. **Forms → Enable form detection** (una sola vez). En el siguiente deploy aparece el formulario `contacto`.
+2. **Site configuration → Notifications → Form submission notifications → Add notification → Email notification**, con el correo donde querés recibir los mensajes.
+
+Incluye un campo oculto anti-spam (honeypot). Si el envío falla, el sitio ofrece mandar el mensaje desde el correo de la persona o por WhatsApp. En `npm run dev` el envío siempre muestra ese aviso de error, porque Netlify solo existe en el sitio publicado.
 
 ## Paleta
 

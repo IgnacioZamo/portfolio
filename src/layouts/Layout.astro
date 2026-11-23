@@ -4,6 +4,7 @@
   fondo decorativo y scripts globales. Cada página puede pasar su título y descripción.
 */
 import GoogleAnalytics from "@componentes/comunes/GoogleAnalytics.astro";
+import WhatsappFlotante from "@componentes/comunes/whatsapp/WhatsappFlotante.astro";
 import "@styles/global.css";
 
 interface Props {
@@ -50,6 +51,8 @@ const imagenOg = "https://i.ibb.co/xYN1fjx/Ignacio-Zamo-Cv.jpg";
 			<div class="glow glow-b"></div>
 		</div>
 		<slot />
+		{/* Llamada a la acción fija en todas las páginas */}
+		<WhatsappFlotante />
 		{/* Scripts globales: fondo de estrellas y medición de clics (src/scripts/) */}
 		<script src="../scripts/estrellas.js"></script>
 		<script src="../scripts/eventos.js"></script>

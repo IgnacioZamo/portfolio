@@ -1,0 +1,91 @@
+/*
+  Estilos de WhatsappFlotante.astro.
+  Todos los selectores empiezan con .wa-flotante para que no afecten a otras secciones.
+*/
+
+.wa-flotante {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  /* Debajo del header (z-index 50) para que el menú mobile lo tape al abrirse */
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border-radius: 999px;
+  color: #fff;
+  animation: waEntrada .5s cubic-bezier(.2, .7, .2, 1) .8s both;
+}
+
+.wa-flotante .wa-icono {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 10px 30px -6px rgba(37, 211, 102, .55), 0 4px 12px rgba(0, 0, 0, .35);
+  transition: transform .25s, box-shadow .25s;
+}
+.wa-flotante .wa-icono svg { width: 30px; height: 30px; }
+
+/* Anillo que late suavemente para llamar la atención sin ser invasivo */
+.wa-flotante .wa-icono::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: waPulso 2.4s ease-out 1.5s infinite;
+}
+
+/* El texto de la llamada a la acción solo se muestra desde tablet (en mobile taparía contenido) */
+.wa-flotante .wa-texto { display: none; }
+
+.wa-flotante:hover .wa-icono,
+.wa-flotante:focus-visible .wa-icono {
+  transform: scale(1.06);
+  box-shadow: 0 14px 36px -6px rgba(37, 211, 102, .7), 0 4px 12px rgba(0, 0, 0, .35);
+}
+.wa-flotante:focus-visible { outline-offset: 4px; }
+
+@keyframes waEntrada {
+  from { opacity: 0; transform: translateY(16px) scale(.9); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes waPulso {
+  0% { transform: scale(1); opacity: .7; }
+  70%, 100% { transform: scale(1.45); opacity: 0; }
+}
+
+@media (min-width: 641px) {
+  .wa-flotante {
+    right: 24px;
+    bottom: 24px;
+    padding: 6px 6px 6px 20px;
+    flex-direction: row-reverse;
+    background: rgba(7, 12, 22, .88);
+    border: 1px solid rgba(37, 211, 102, .35);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .7);
+  }
+  .wa-flotante .wa-icono { width: 48px; height: 48px; }
+  .wa-flotante .wa-icono svg { width: 26px; height: 26px; }
+  .wa-flotante .wa-texto {
+    display: grid;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .wa-flotante .wa-texto b { font: 600 14px var(--f-display); }
+  .wa-flotante .wa-texto span { font-size: 13px; color: var(--muted); }
+  .wa-flotante:hover { border-color: rgba(37, 211, 102, .7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-flotante,
+  .wa-flotante .wa-icono::after { animation: none; }
+}

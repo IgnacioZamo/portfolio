@@ -1,0 +1,122 @@
+/*
+  Estilos de PanelTrabajos.astro.
+  Todos los selectores empiezan con .panel-trabajos para que no afecten a otras secciones.
+*/
+
+.panel-trabajos .panel-intro { max-width: 760px; margin-bottom: 24px; font-size: 17px; color: var(--muted); }
+.panel-trabajos .note { display: block; margin-top: 6px; font: 500 12.5px var(--f-mono); color: var(--dim); }
+
+.panel-trabajos .samples { display: grid; grid-template-columns: 1fr; gap: 20px; list-style: none; }
+.panel-trabajos .sample {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: .3s;
+}
+.panel-trabajos .sample:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.panel-trabajos .sample .body { display: grid; gap: 6px; padding: 20px 22px; }
+.panel-trabajos .sample h4 { font: 600 19px var(--f-display); }
+.panel-trabajos .sample p { color: var(--muted); font-size: 14.5px; }
+.panel-trabajos .sample.big h4 { font-size: 24px; }
+.panel-trabajos .kind { font: 700 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+
+/* El área visual es un botón: abre el modal */
+.panel-trabajos .media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.panel-trabajos .media:focus-visible { outline-offset: -3px; }
+/* La portada mantiene el formato 16:9 de los videos aunque la imagen todavía no haya cargado */
+.panel-trabajos .media-preview { display: flex; flex-direction: column; flex: 1; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-2); }
+.panel-trabajos .media-preview img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
+
+.panel-trabajos .play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: auto;
+  border-radius: 50%;
+  background: rgba(7, 12, 22, .75);
+  border: 1px solid rgba(255, 255, 255, .25);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  transition: .25s;
+}
+.panel-trabajos .play svg { width: 26px; height: 26px; margin-left: 3px; }
+.panel-trabajos .sample:hover .play,
+.panel-trabajos .media:focus-visible .play { transform: scale(1.08); background: var(--teal); color: #04121A; }
+.panel-trabajos .dur {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .65);
+  font: 600 11.5px var(--f-mono);
+  color: #fff;
+}
+
+/* ===== Modal ===== */
+.panel-trabajos .modal {
+  width: min(960px, 100% - 32px);
+  max-height: calc(100% - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .8);
+}
+.panel-trabajos .modal::backdrop {
+  background: rgba(7, 12, 22, .8);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.panel-trabajos .modal[open] { animation: modalIn .3s cubic-bezier(.2, .7, .2, 1); }
+.panel-trabajos .modal-media { display: flex; flex-direction: column; background: #000; }
+/* El video o la imagen los crea trabajos.js al abrir el modal */
+.panel-trabajos .modal-media img,
+.panel-trabajos .modal-media video { width: 100%; max-height: 72vh; object-fit: contain; }
+.panel-trabajos .modal-media video { aspect-ratio: 16 / 9; background: #000; }
+.panel-trabajos .modal-media iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
+.panel-trabajos .modal-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border-top: 1px solid var(--line);
+}
+.panel-trabajos .modal-pie h4 { font: 600 19px var(--f-display); }
+.panel-trabajos .modal-pie p { margin-top: 4px; font-size: 14.5px; color: var(--muted); }
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (min-width: 1025px) {
+  .panel-trabajos .samples { grid-template-columns: 1fr 1fr; }
+  .panel-trabajos .sample.big { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; }
+  .panel-trabajos .sample.big .media { border-bottom: 0; border-right: 1px solid var(--line); }
+  .panel-trabajos .sample.big .body { align-content: center; padding: 32px; }
+}

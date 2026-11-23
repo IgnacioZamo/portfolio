@@ -1,0 +1,56 @@
+/*
+  Estilos de Contacto.astro.
+  Todos los selectores empiezan con .contacto para que no afecten a otras secciones.
+*/
+
+.contacto .contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 28px 22px;
+}
+.contacto .contact-copy p { margin-top: 18px; font-size: 17px; color: var(--muted); }
+
+.contacto .socials { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; list-style: none; }
+.contacto .socials a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(7, 12, 22, .45);
+  font-weight: 500;
+  transition: .2s;
+}
+.contacto .socials a:hover { border-color: var(--line-strong); color: var(--teal); }
+.contacto .socials i { font-size: 18px; }
+
+.contacto .form { display: grid; gap: 16px; align-content: start; }
+.contacto .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.contacto label { display: grid; gap: 8px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.contacto input,
+.contacto textarea {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(7, 12, 22, .6);
+  font: 15px var(--f-body);
+  color: var(--text);
+  resize: vertical;
+  outline: none;
+}
+.contacto input::placeholder,
+.contacto textarea::placeholder { color: var(--dim); }
+.contacto input:focus,
+.contacto textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(45, 212, 191, .12); }
+.contacto .form .btn { justify-content: center; }
+
+@media (min-width: 641px) {
+  .contacto .contact { padding: 52px; gap: 56px; }
+  .contacto .two { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1025px) {
+  .contacto .contact { grid-template-columns: 1fr 1fr; }
+}

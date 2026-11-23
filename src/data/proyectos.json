@@ -1,5 +1,21 @@
 [
   {
+    "titulo": "Ever Ojeda · Higiene y Seguridad",
+    "descripcion": "Landing page para un licenciado en Higiene y Seguridad en el Trabajo: servicios para empresas, trayectoria y pedido de propuesta. Hecha con Astro.",
+    "categoria": "proyecto",
+    "imagen": "/proyectos/ever-ojeda.webp",
+    "demo": "https://ignaciozamo.github.io/Ever_Ojeda_LandingPage/",
+    "codigo": "https://github.com/IgnacioZamo/Ever_Ojeda_LandingPage"
+  },
+  {
+    "titulo": "Black Dragon 3D",
+    "descripcion": "Web para un negocio de figuras impresas en 3D: catálogo por categorías, piezas destacadas, pedidos a medida y consultas por WhatsApp.",
+    "categoria": "proyecto",
+    "imagen": "/proyectos/black-dragon-3d.webp",
+    "demo": "https://ignaciozamo.github.io/BlackDragon-3D/",
+    "codigo": "https://github.com/IgnacioZamo/BlackDragon-3D"
+  },
+  {
     "titulo": "InteriorZam",
     "descripcion": "Landing Page de una pagina web de decoracion de interiores",
     "categoria": "proyecto",

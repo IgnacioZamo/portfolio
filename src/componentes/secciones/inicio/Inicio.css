@@ -1,0 +1,99 @@
+/*
+  Estilos de Inicio.astro.
+  Todos los selectores empiezan con .hero para que no afecten a otras secciones.
+*/
+
+.hero { padding: 56px 0 40px; }
+.hero .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero .eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px var(--teal);
+}
+.hero h1 {
+  font: 700 clamp(42px, 5.6vw, 74px)/1.02 var(--f-display);
+  letter-spacing: -.035em;
+  margin: 26px 0 22px;
+}
+.hero .lead { font-size: 17px; color: var(--muted); max-width: 560px; }
+.hero .lead b { color: var(--text); font-weight: 600; }
+.hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 26px; }
+.hero .meta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Foto en marco tipo ventana de editor */
+.hero .hero-card {
+  position: relative;
+  max-width: 420px;
+  margin: 10px 0 0;
+  padding: 14px;
+  border-radius: 26px;
+  background: linear-gradient(160deg, rgba(45, 212, 191, .5), rgba(99, 102, 241, .25) 60%, rgba(148, 163, 184, .1));
+}
+.hero .hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 25px;
+  background: var(--bg-2);
+}
+.hero .hero-card > * { position: relative; }
+.hero .win-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 6px 14px;
+  font: 500 12px var(--f-mono);
+  color: var(--dim);
+}
+.hero .win-bar i { width: 11px; height: 11px; border-radius: 50%; background: #334155; }
+.hero .win-bar i:nth-child(1) { background: #F87171; }
+.hero .win-bar i:nth-child(2) { background: #FBBF24; }
+.hero .win-bar i:nth-child(3) { background: #34D399; }
+.hero .win-bar span { margin-left: auto; }
+.hero .photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 16px;
+  filter: saturate(.9);
+}
+/* El cuadro sobresale por debajo del marco (40 % de su propia altura) para quedar
+   sobre el cuello y los hombros, sin tapar la cara. Al ser un porcentaje de su alto,
+   la posición se ajusta sola al tamaño del cuadro en cada breakpoint. */
+.hero .code {
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  transform: translateY(40%);
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(7, 12, 22, .92);
+  border: 1px solid var(--line-strong);
+  font: 500 11.5px/1.7 var(--f-mono);
+  color: var(--muted);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, .7);
+}
+.hero .code .k { color: #C084FC; }
+.hero .code .v { color: var(--cyan); }
+.hero .code .s { color: var(--teal); }
+.hero .code .b { color: #FBBF24; }
+
+@media (min-width: 641px) {
+  .hero { padding: 96px 0 72px; }
+  .hero .lead { font-size: 19px; }
+  .hero .hero-card { margin: 0 0 0 46px; }
+  .hero .code { left: -46px; padding: 16px 20px; font-size: 13px; }
+}
+
+@media (min-width: 1025px) {
+  .hero .hero-grid { grid-template-columns: 1.15fr .85fr; }
+  .hero .hero-card { max-width: none; margin: 0; }
+}

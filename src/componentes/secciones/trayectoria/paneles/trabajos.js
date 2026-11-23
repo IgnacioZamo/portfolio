@@ -1,8 +1,8 @@
-// Modal de Muestras: abre la imagen, el video o el embed de YouTube en grande.
-// El multimedia se crea recién al abrir, así los videos no se descargan antes de tiempo.
+// Modal de Trabajos: abre el video, la imagen o el embed de YouTube en grande.
+// El video se crea recién al abrir, así no se descarga hasta que la persona lo pide.
 import { registrarEvento } from "@scripts/analitica.js";
 
-const modal = document.querySelector("#modal-muestra");
+const modal = document.querySelector("#modal-trabajo");
 
 if (modal instanceof HTMLDialogElement) {
   const contenedor = modal.querySelector("[data-modal-media]");
@@ -12,7 +12,7 @@ if (modal instanceof HTMLDialogElement) {
   function crearMedia(boton) {
     const { tipo, src, poster } = boton.dataset;
 
-    // Sin material real cargado: se amplía la vista previa de ejemplo
+    // Sin archivo cargado en el JSON: se amplía la portada de la tarjeta
     if (!src) return boton.querySelector(".media-preview").cloneNode(true);
 
     if (tipo === "imagen") {
@@ -42,13 +42,13 @@ if (modal instanceof HTMLDialogElement) {
     return video;
   }
 
-  document.querySelectorAll("[data-muestra]").forEach((boton) => {
+  document.querySelectorAll("[data-trabajo]").forEach((boton) => {
     boton.addEventListener("click", () => {
       contenedor.replaceChildren(crearMedia(boton));
       titulo.textContent = boton.dataset.titulo ?? "";
       descripcion.textContent = boton.dataset.descripcion ?? "";
       modal.showModal();
-      registrarEvento("ver_muestra", { muestra: boton.dataset.titulo, tipo: boton.dataset.tipo });
+      registrarEvento("ver_trabajo", { trabajo: boton.dataset.titulo, tipo: boton.dataset.tipo });
     });
   });
 

@@ -1,0 +1,105 @@
+/*
+  Estilos de Proyectos.astro.
+  Todos los selectores empiezan con .proyectos para que no afecten a otras secciones.
+*/
+
+/* Primera sección de su página: mismo aire superior que el hero */
+.section.proyectos { padding-top: 56px; }
+/* Encabezado y filtros apilados, con la misma disposición que Trayectoria (centrado desde tablet) */
+.proyectos .head.row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 44px;
+  margin-bottom: 32px;
+}
+.proyectos .head-copy { max-width: 760px; }
+
+.proyectos .filters {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(15, 26, 44, .6);
+}
+.proyectos .filters button {
+  padding: 9px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  font: 500 13px var(--f-body);
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .2s, background .2s;
+}
+.proyectos .filters button:hover { color: var(--text); }
+.proyectos .filters button.on {
+  background: var(--surface-2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+.proyectos .filters button:focus-visible { outline-offset: -2px; }
+
+.proyectos .grid-projects { display: grid; grid-template-columns: 1fr; gap: 22px; list-style: none; }
+.proyectos .project {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: .3s;
+}
+.proyectos .project:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -30px rgba(45, 212, 191, .45);
+}
+/* Al filtrar, las tarjetas que quedan entran con la misma animación de Trayectoria */
+.proyectos .project.entra { animation: itemIn .45s cubic-bezier(.2, .7, .2, 1) both; }
+
+.proyectos .shot { position: relative; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); }
+.proyectos .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.proyectos .cat {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: rgba(7, 12, 22, .85);
+  font: 700 11px var(--f-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.proyectos .cat.alt { color: var(--cyan); border-color: rgba(56, 189, 248, .35); }
+.proyectos .cat.team { color: #A5B4FC; border-color: rgba(129, 140, 248, .4); }
+
+.proyectos .body { display: flex; flex-direction: column; flex: 1; gap: 10px; padding: 22px; }
+.proyectos h3 { font: 600 20px var(--f-display); }
+.proyectos .body p { flex: 1; font-size: 15px; color: var(--muted); }
+.proyectos .actions { display: flex; gap: 8px; margin-top: 6px; }
+
+@keyframes itemIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (min-width: 641px) {
+  .section.proyectos { padding-top: 96px; }
+  .proyectos .head.row { align-items: center; text-align: center; margin-bottom: 48px; }
+  .proyectos .head-copy { margin-inline: auto; }
+  .proyectos .head-copy .sub { margin-inline: auto; }
+  .proyectos .filters { display: flex; gap: 6px; width: max-content; max-width: 100%; }
+  .proyectos .filters button { padding: 9px 16px; font-size: 14px; }
+  .proyectos .grid-projects { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1025px) {
+  .proyectos .grid-projects { grid-template-columns: repeat(3, 1fr); }
+}

@@ -6,13 +6,13 @@ Tiene tres páginas:
 | Ruta | Contenido |
 |---|---|
 | `/` | Inicio, Sobre mí y Contacto |
-| `/trayectoria` | Hoja de vida en pestañas: Experiencia, Formación, Skills y Muestras |
+| `/trayectoria` | Hoja de vida en pestañas: Experiencia, Formación, Skills y Trabajos |
 | `/proyectos` | Proyectos web con filtro (Proyectos / Práctica / En equipo) |
 
 ## Tecnologías
 
 - **Astro 4**: sitio estático de varias páginas, con componentes y buen SEO sin JavaScript de más.
-- **Tailwind CSS 3**: tokens de diseño (colores, fuentes, breakpoints) en `tailwind.config.mjs`. Los componentes usan estilos *scoped* de Astro con esas mismas variables.
+- **Tailwind CSS 3**: tokens de diseño (colores, fuentes, breakpoints) en `tailwind.config.mjs`. Cada componente tiene su propio archivo `.css` con esas mismas variables.
 - **Partytown**: corre Google Analytics en un web worker para no frenar la carga.
 - **Devicon** (CDN) para los logos de tecnologías y **Google Fonts** para las tipografías.
 
@@ -29,22 +29,22 @@ src/
 ├── componentes/
 │   ├── comunes/                Partes que se repiten en todas las páginas
 │   │   ├── GoogleAnalytics.astro
-│   │   ├── header/             Header.astro + navBar.js (menú mobile y sección activa)
-│   │   └── footer/             Footer.astro
-│   └── secciones/              Una carpeta por sección: markup, estilos y script juntos
-│       ├── inicio/             Inicio.astro
-│       ├── sobre-mi/           SobreMi.astro
-│       ├── contacto/           Contacto.astro + formulario.js (mailto)
-│       ├── proyectos/          Proyectos.astro + filtroProyectos.js
-│       └── trayectoria/        Trayectoria.astro + trayectoria.js (pestañas)
-│           └── paneles/        PanelExperiencia, PanelFormacion, PanelSkills,
-│                               PanelMuestras + muestras.js (modal)
+│   │   ├── header/             Header.astro + Header.css + navBar.js (menú mobile y sección activa)
+│   │   └── footer/             Footer.astro + Footer.css
+│   └── secciones/              Una carpeta por sección: .astro (markup) + .css (estilos) + .js
+│       ├── inicio/             Inicio.astro + Inicio.css
+│       ├── sobre-mi/           SobreMi.astro + SobreMi.css
+│       ├── contacto/           Contacto.astro + Contacto.css + formulario.js (mailto)
+│       ├── proyectos/          Proyectos.astro + Proyectos.css + filtroProyectos.js
+│       └── trayectoria/        Trayectoria.astro + Trayectoria.css + trayectoria.js (pestañas)
+│           └── paneles/        PanelExperiencia, PanelFormacion, PanelSkills y
+│                               PanelTrabajos (cada uno con su .css) + trabajos.js (modal)
 ├── data/                       Contenido editable sin tocar el markup
 │   ├── sitio.js                Enlaces compartidos (CV, redes) e ID de Analytics
 │   ├── experiencia.json        Puestos de la línea de tiempo
 │   ├── formacion.json          Títulos y cursos
 │   ├── skills.json             Herramientas y soft skills
-│   ├── muestras.json           Muestras de Excel / Power BI
+│   ├── trabajos.json           Videos de trabajos en Excel / Power BI
 │   ├── proyectos.json          Proyectos web
 │   └── iconos.js               Íconos SVG reutilizables
 ├── scripts/                    JavaScript global
@@ -53,15 +53,25 @@ src/
 │   └── eventos.js              Mide los clics con data-evento
 └── styles/
     └── global.css              Variables, base, botones, chips y tarjetas
+
+public/
+├── proyectos/                  Capturas (.webp, 1280×800) de los proyectos web
+└── trabajos/                   Videos (.mp4) y portadas (.webp) de la pestaña Trabajos
 ```
 
 Los imports usan alias definidos en `tsconfig.json`: `@layouts`, `@componentes`, `@data`, `@scripts` y `@styles`.
+
+### Estilos
+
+- `src/styles/global.css`: variables (colores, fuentes), base y clases compartidas (`.btn`, `.chip`, `.card`, `.section`…). Se carga en todas las páginas desde el Layout.
+- Cada componente importa su `.css` en el frontmatter (`import "./Contacto.css"`). Astro solo incluye en cada página el CSS de los componentes que usa.
+- Para que los estilos de una sección no afecten a otra, todos los selectores de su `.css` empiezan con la clase raíz de esa sección: `.nav`, `.footer`, `.hero`, `.sobre-mi`, `.contacto`, `.proyectos`, `.trayectoria` y `.panel-experiencia`, `.panel-formacion`, `.panel-skills`, `.panel-trabajos`. Al agregar reglas nuevas, respetar ese prefijo.
 
 ## Cómo editar el contenido
 
 - **Sumar un puesto, curso o proyecto:** agregarlo en el JSON correspondiente de `src/data/`.
 - **Cambiar el CV o las redes:** `src/data/sitio.js` (se actualiza en el header, el menú mobile y Contacto).
-- **Muestras reales:** en `muestras.json` completar `src` (imagen `.webp`, video `.mp4` con `poster`, o el ID de un video de YouTube con `"tipo": "youtube"`). Los archivos locales van en `public/muestras/`.
+- **Sumar un trabajo (pestaña Trabajos):** copiar el video `.mp4` y su portada `.webp` (16:9) en `public/trabajos/` y agregarlo en `trabajos.json` con `src`, `poster` y `duracion`. También admite imágenes (`"tipo": "imagen"`) o el ID de un video de YouTube (`"tipo": "youtube"`).
 - **Medir un botón nuevo en Analytics:** agregarle `data-evento="nombre"` y, si hace falta, `data-evento-*` con los parámetros.
 
 ## Paleta
@@ -102,6 +112,5 @@ Google Analytics solo se carga en el build de producción, así las visitas en d
 
 ## Pendientes
 
-- Reemplazar las muestras de ejemplo por material real (Excel y videos de Power BI).
 - Confirmar la captura del proyecto Zelectric (el archivo se llama `generador-pass.png`).
-- Registrar en Google Analytics las dimensiones personalizadas de los eventos (`ubicacion`, `red`, `proyecto`, `tipo`, `pestana`, `muestra`).
+- Registrar en Google Analytics las dimensiones personalizadas de los eventos (`ubicacion`, `red`, `proyecto`, `tipo`, `pestana`, `trabajo`).

@@ -3,10 +3,12 @@
   Sección Contacto (#contacto en la home): redes a la izquierda y formulario a la derecha.
   El formulario no usa backend: formulario.js arma un mailto con los datos.
 */
+// Estilos de este componente
+import "./Contacto.css";
 import { REDES } from "@data/sitio.js";
 ---
 
-<section id="contacto" class="section" aria-labelledby="titulo-contacto">
+<section id="contacto" class="section contacto" aria-labelledby="titulo-contacto">
   <div class="container">
     <div class="contact card">
       <div class="contact-copy">
@@ -53,59 +55,5 @@ import { REDES } from "@data/sitio.js";
     </div>
   </div>
 </section>
-
-<style>
-  .contact {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 28px 22px;
-  }
-  .contact-copy p { margin-top: 18px; font-size: 17px; color: var(--muted); }
-
-  .socials { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; list-style: none; }
-  .socials a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: rgba(7, 12, 22, .45);
-    font-weight: 500;
-    transition: .2s;
-  }
-  .socials a:hover { border-color: var(--line-strong); color: var(--teal); }
-  .socials i { font-size: 18px; }
-
-  .form { display: grid; gap: 16px; align-content: start; }
-  .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  label { display: grid; gap: 8px; font-size: 14px; font-weight: 500; color: var(--muted); }
-  input,
-  textarea {
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(7, 12, 22, .6);
-    font: 15px var(--f-body);
-    color: var(--text);
-    resize: vertical;
-    outline: none;
-  }
-  input::placeholder,
-  textarea::placeholder { color: var(--dim); }
-  input:focus,
-  textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(45, 212, 191, .12); }
-  .form .btn { justify-content: center; }
-
-  @media (min-width: 641px) {
-    .contact { padding: 52px; gap: 56px; }
-    .two { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (min-width: 1025px) {
-    .contact { grid-template-columns: 1fr 1fr; }
-  }
-</style>
 
 <script src="./formulario.js"></script>

@@ -2,6 +2,8 @@
 /*
   Footer de todas las páginas: agradecimiento, logo, copyright y "Volver arriba".
 */
+// Estilos de este componente
+import "./Footer.css";
 // El año se toma al compilar, así el copyright se actualiza con cada build
 const anio = new Date().getFullYear();
 ---
@@ -19,36 +21,3 @@ const anio = new Date().getFullYear();
   </div>
 </footer>
 
-<style>
-  .footer {
-    padding: 90px 0 36px;
-    text-align: center;
-    border-top: 1px solid var(--line);
-    background: linear-gradient(180deg, transparent, rgba(15, 145, 120, .08));
-  }
-  .thanks {
-    margin-bottom: 18px;
-    font: 700 clamp(56px, 11vw, 150px)/1 var(--f-display);
-    letter-spacing: -.05em;
-  }
-  .texto { font-size: 17px; color: var(--muted); }
-  .foot-bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    margin-top: 70px;
-    padding-top: 26px;
-    border-top: 1px solid var(--line);
-    font-size: 14px;
-    color: var(--dim);
-  }
-  .logo.small { font-size: 16px; color: var(--text); }
-  .top { color: var(--muted); }
-  .top:hover { color: var(--teal); }
-
-  @media (min-width: 641px) {
-    .foot-bar { justify-content: space-between; text-align: left; }
-  }
-</style>

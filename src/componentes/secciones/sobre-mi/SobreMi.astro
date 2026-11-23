@@ -3,12 +3,16 @@
   Sección Sobre mí (#sobre-mi en la home): texto de perfil, 3 cifras y 4 áreas de gestión.
   Las cifras y áreas se editan en los arrays de abajo.
 */
+// Estilos de este componente
+import "./SobreMi.css";
 import { iconos } from "@data/iconos.js";
+import proyectos from "@data/proyectos.json";
 
 const cifras = [
   { valor: "10+", texto: "años en gestión administrativa" },
   { valor: "6", texto: "empresas y emprendimientos" },
-  { valor: "7", texto: "proyectos web publicados" },
+  // Se cuenta desde proyectos.json: al sumar un proyecto, la cifra se actualiza sola
+  { valor: String(proyectos.length), texto: "proyectos web publicados" },
 ];
 
 const areas = [
@@ -19,7 +23,7 @@ const areas = [
 ];
 ---
 
-<section id="sobre-mi" class="section" aria-labelledby="titulo-sobre-mi">
+<section id="sobre-mi" class="section sobre-mi" aria-labelledby="titulo-sobre-mi">
   <div class="container">
     <div class="about card">
       <div>
@@ -49,63 +53,3 @@ const areas = [
   </div>
 </section>
 
-<style>
-  .about {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 28px 22px;
-    align-items: center;
-  }
-  .about p { color: var(--muted); font-size: 18px; margin-top: 20px; }
-  .about p + p { margin-top: 12px; }
-
-  .stats { display: grid; gap: 14px; }
-  .stats li {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 18px 22px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: rgba(7, 12, 22, .45);
-  }
-  .stats b {
-    min-width: 70px;
-    font: 700 38px/1 var(--f-display);
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .stats span { color: var(--muted); font-size: 15px; }
-
-  .areas {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 18px;
-  }
-  .area {
-    padding: 24px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: rgba(15, 26, 44, .65);
-    transition: .25s;
-  }
-  .area:hover { border-color: var(--line-strong); transform: translateY(-3px); }
-  .area .ico { width: 44px; height: 44px; margin-bottom: 16px; }
-  .area .ico svg { width: 22px; height: 22px; }
-  .area h3 { font: 600 18px var(--f-display); margin-bottom: 6px; }
-  .area p { color: var(--muted); font-size: 14.5px; }
-
-  @media (min-width: 641px) {
-    .about { padding: 52px; gap: 56px; }
-    .areas { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1025px) {
-    .about { grid-template-columns: 1.4fr 1fr; }
-    .areas { grid-template-columns: repeat(4, 1fr); }
-  }
-</style>

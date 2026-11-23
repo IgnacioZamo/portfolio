@@ -3,6 +3,8 @@
   Sección Proyectos web (página /proyectos): intro, filtro por categoría y grilla.
   El filtro funciona con filtroProyectos.js (data-filtro / data-categoria).
 */
+// Estilos de este componente
+import "./Proyectos.css";
 // Para sumar un proyecto alcanza con agregarlo en src/data/proyectos.json
 import proyectos from "@data/proyectos.json";
 
@@ -19,7 +21,7 @@ const filtros = [
 ];
 ---
 
-<section id="portfolio" class="section" aria-labelledby="titulo-portfolio">
+<section id="portfolio" class="section proyectos" aria-labelledby="titulo-portfolio">
   <div class="container">
     <div class="head row">
       <div class="head-copy">
@@ -60,108 +62,5 @@ const filtros = [
     </ul>
   </div>
 </section>
-
-<style>
-  /* Primera sección de su página: mismo aire superior que el hero */
-  .section { padding-top: 56px; }
-  /* Encabezado y filtros apilados, con la misma disposición que Trayectoria (centrado desde tablet) */
-  .head.row {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 44px;
-    margin-bottom: 32px;
-  }
-  .head-copy { max-width: 760px; }
-
-  .filters {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 2px;
-    width: 100%;
-    padding: 5px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: rgba(15, 26, 44, .6);
-  }
-  .filters button {
-    padding: 9px 8px;
-    border: 0;
-    border-radius: 10px;
-    background: none;
-    font: 500 13px var(--f-body);
-    color: var(--muted);
-    white-space: nowrap;
-    cursor: pointer;
-    transition: color .2s, background .2s;
-  }
-  .filters button:hover { color: var(--text); }
-  .filters button.on {
-    background: var(--surface-2);
-    color: var(--text);
-    box-shadow: inset 0 0 0 1px var(--line-strong);
-  }
-  .filters button:focus-visible { outline-offset: -2px; }
-
-  .grid-projects { display: grid; grid-template-columns: 1fr; gap: 22px; list-style: none; }
-  .project {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--surface);
-    transition: .3s;
-  }
-  .project:hover {
-    border-color: var(--line-strong);
-    transform: translateY(-4px);
-    box-shadow: 0 30px 60px -30px rgba(45, 212, 191, .45);
-  }
-  /* Al filtrar, las tarjetas que quedan entran con la misma animación de Trayectoria */
-  .project.entra { animation: itemIn .45s cubic-bezier(.2, .7, .2, 1) both; }
-
-  .shot { position: relative; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); }
-  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .cat {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid var(--line-strong);
-    background: rgba(7, 12, 22, .85);
-    font: 700 11px var(--f-mono);
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--teal);
-  }
-  .cat.alt { color: var(--cyan); border-color: rgba(56, 189, 248, .35); }
-  .cat.team { color: #A5B4FC; border-color: rgba(129, 140, 248, .4); }
-
-  .body { display: flex; flex-direction: column; flex: 1; gap: 10px; padding: 22px; }
-  h3 { font: 600 20px var(--f-display); }
-  .body p { flex: 1; font-size: 15px; color: var(--muted); }
-  .actions { display: flex; gap: 8px; margin-top: 6px; }
-
-  @keyframes itemIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: none; }
-  }
-
-  @media (min-width: 641px) {
-    .section { padding-top: 96px; }
-    .head.row { align-items: center; text-align: center; margin-bottom: 48px; }
-    .head-copy { margin-inline: auto; }
-    .head-copy .sub { margin-inline: auto; }
-    .filters { display: flex; gap: 6px; width: max-content; max-width: 100%; }
-    .filters button { padding: 9px 16px; font-size: 14px; }
-    .grid-projects { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1025px) {
-    .grid-projects { grid-template-columns: repeat(3, 1fr); }
-  }
-</style>
 
 <script src="./filtroProyectos.js"></script>

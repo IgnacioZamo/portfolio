@@ -1,4 +1,6 @@
 ---
+// Estilos de este componente
+import "./PanelFormacion.css";
 // Títulos y cursos se cargan desde src/data/formacion.json
 import formacion from "@data/formacion.json";
 
@@ -26,61 +28,3 @@ const grupos = [
   </>
 ))}
 
-<style>
-  .group {
-    margin: 8px 0 18px;
-    font: 600 14px var(--f-mono);
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: .12em;
-  }
-  .edu-grid ~ .group { margin-top: 36px; }
-
-  .edu-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-  .edu {
-    padding: 26px 28px;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(19, 34, 58, .7), rgba(15, 26, 44, .6));
-    transition: .25s;
-  }
-  .edu:hover { border-color: var(--line-strong); }
-  .edu.featured {
-    border-color: rgba(45, 212, 191, .28);
-    box-shadow: 0 20px 60px -34px rgba(45, 212, 191, .5);
-  }
-  .edu-year {
-    display: inline-block;
-    margin-bottom: 14px;
-    padding: 5px 11px;
-    border-radius: 999px;
-    font: 500 12.5px var(--f-mono);
-    color: var(--teal);
-    background: rgba(45, 212, 191, .08);
-    border: 1px solid rgba(45, 212, 191, .22);
-  }
-  h4 { font: 600 20px/1.3 var(--f-display); }
-  .company { margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--teal); }
-  ul { display: grid; gap: 7px; margin-top: 14px; list-style: none; }
-  li { position: relative; padding-left: 20px; font-size: 15px; color: var(--muted); }
-  li::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 10px;
-    width: 6px;
-    height: 6px;
-    border-radius: 2px;
-    background: var(--teal);
-    opacity: .7;
-    transform: rotate(45deg);
-  }
-
-  @media (min-width: 641px) {
-    .edu-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1025px) {
-    .edu-grid { grid-template-columns: repeat(3, 1fr); }
-    .edu-grid.two-col { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>

@@ -1,0 +1,63 @@
+/*
+  Estilos de SobreMi.astro.
+  Todos los selectores empiezan con .sobre-mi para que no afecten a otras secciones.
+*/
+
+.sobre-mi .about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 28px 22px;
+  align-items: center;
+}
+.sobre-mi .about p { color: var(--muted); font-size: 18px; margin-top: 20px; }
+.sobre-mi .about p + p { margin-top: 12px; }
+
+.sobre-mi .stats { display: grid; gap: 14px; }
+.sobre-mi .stats li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(7, 12, 22, .45);
+}
+.sobre-mi .stats b {
+  min-width: 70px;
+  font: 700 38px/1 var(--f-display);
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sobre-mi .stats span { color: var(--muted); font-size: 15px; }
+
+.sobre-mi .areas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+.sobre-mi .area {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(15, 26, 44, .65);
+  transition: .25s;
+}
+.sobre-mi .area:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.sobre-mi .area .ico { width: 44px; height: 44px; margin-bottom: 16px; }
+.sobre-mi .area .ico svg { width: 22px; height: 22px; }
+.sobre-mi .area h3 { font: 600 18px var(--f-display); margin-bottom: 6px; }
+.sobre-mi .area p { color: var(--muted); font-size: 14.5px; }
+
+@media (min-width: 641px) {
+  .sobre-mi .about { padding: 52px; gap: 56px; }
+  .sobre-mi .areas { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1025px) {
+  .sobre-mi .about { grid-template-columns: 1.4fr 1fr; }
+  .sobre-mi .areas { grid-template-columns: repeat(4, 1fr); }
+}

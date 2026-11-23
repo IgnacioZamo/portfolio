@@ -1,0 +1,72 @@
+---
+/*
+  Pestaña Trabajos: videos e imágenes de trabajos ofimáticos (Excel, Power BI).
+  Se cargan desde src/data/trabajos.json y los archivos viven en public/trabajos/.
+  Tipos admitidos en el JSON:
+    - video:   "src": "/trabajos/archivo.mp4", "poster": "/trabajos/archivo.webp", "duracion": "0:52"
+    - imagen:  "src": "/trabajos/archivo.webp"
+    - youtube: "src": "<ID del video no listado>", "poster" opcional
+  La tarjeta muestra la portada y, al hacer clic, trabajos.js abre el modal.
+*/
+// Estilos de este componente
+import "./PanelTrabajos.css";
+import trabajos from "@data/trabajos.json";
+---
+
+<p class="panel-intro">
+  Ejemplos de mi trabajo ofimático: bases de datos en Excel y tableros de control en Power BI.
+  <span class="note">En los trabajos hechos para empresas, los datos reales se reemplazaron por datos ficticios.</span>
+</p>
+
+<ul class="samples">
+  {trabajos.map((trabajo) => {
+    const esVideo = trabajo.tipo === "video" || trabajo.tipo === "youtube";
+    const portada = trabajo.tipo === "imagen" ? trabajo.src : trabajo.poster;
+    return (
+      <li class:list={["sample", { big: trabajo.destacada }]}>
+        <button
+          type="button"
+          class="media"
+          data-trabajo
+          data-tipo={trabajo.tipo}
+          data-src={trabajo.src}
+          data-poster={trabajo.poster}
+          data-titulo={trabajo.titulo}
+          data-descripcion={trabajo.descripcion}
+          aria-label={`${esVideo ? "Reproducir video" : "Ver imagen"}: ${trabajo.titulo}`}
+        >
+          <span class="media-preview">
+            {portada && <img src={portada} alt="" width="1280" height="720" loading="lazy" decoding="async" />}
+          </span>
+          {esVideo && (
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          )}
+          {trabajo.duracion && <span class="dur">{trabajo.duracion}</span>}
+        </button>
+        <div class="body">
+          <span class="kind">{trabajo.formato}</span>
+          <h4>{trabajo.titulo}</h4>
+          <p>{trabajo.descripcion}</p>
+        </div>
+      </li>
+    );
+  })}
+</ul>
+
+<!-- Modal (lightbox) para ver el video o la imagen en grande: trabajos.js -->
+<dialog id="modal-trabajo" class="modal" aria-labelledby="modal-trabajo-titulo">
+  <div class="modal-caja">
+    <div class="modal-media" data-modal-media></div>
+    <div class="modal-pie">
+      <div>
+        <h4 id="modal-trabajo-titulo" data-modal-titulo></h4>
+        <p data-modal-descripcion></p>
+      </div>
+      <form method="dialog">
+        <button class="btn btn-ghost btn-sm" type="submit">Cerrar</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<script src="./trabajos.js"></script>

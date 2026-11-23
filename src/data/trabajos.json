@@ -1,0 +1,30 @@
+[
+  {
+    "tipo": "video",
+    "formato": "Excel · VBA · Video",
+    "titulo": "Base de datos de personal",
+    "descripcion": "Planilla con macros para administrar al personal: filtro por obra, buscador de operarios, ficha completa, alta de personal nuevo y control de EPP y capacitaciones.",
+    "destacada": true,
+    "src": "/trabajos/base-datos-personal.mp4",
+    "poster": "/trabajos/base-datos-personal.webp",
+    "duracion": "0:52"
+  },
+  {
+    "tipo": "video",
+    "formato": "Power BI · Video",
+    "titulo": "Estadísticas generales de obra",
+    "descripcion": "Horas trabajadas, personal, ausencias y accidentes por obra y quincena, con filtro por mes y filtro cruzado entre gráficos.",
+    "src": "/trabajos/estadisticas-generales-obra.mp4",
+    "poster": "/trabajos/estadisticas-generales-obra.webp",
+    "duracion": "1:03"
+  },
+  {
+    "tipo": "video",
+    "formato": "Power BI · Video",
+    "titulo": "Datos demográficos",
+    "descripcion": "Reporte interactivo por país con mapa, treemap y tabla dinámica: población, esperanza de vida y mortalidad infantil.",
+    "src": "/trabajos/datos-demograficos.mp4",
+    "poster": "/trabajos/datos-demograficos.webp",
+    "duracion": "0:51"
+  }
+]

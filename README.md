@@ -11,7 +11,7 @@ Tiene tres páginas:
 
 ## Tecnologías
 
-- **Astro 4**: sitio estático de varias páginas, con componentes y buen SEO sin JavaScript de más.
+- **Astro 5**: sitio estático de varias páginas, con componentes y buen SEO sin JavaScript de más.
 - **Tailwind CSS 3**: tokens de diseño (colores, fuentes, breakpoints) en `tailwind.config.mjs`. Cada componente tiene su propio archivo `.css` con esas mismas variables.
 - **Partytown**: corre Google Analytics en un web worker para no frenar la carga.
 - **Devicon** (CDN) para los logos de tecnologías y **Google Fonts** para las tipografías.
@@ -100,6 +100,10 @@ Los imports usan alias definidos en `tsconfig.json`: `@layouts`, `@componentes`,
 - `desktop`: desde 1025px (navbar completo; entre 1025 y 1199px se ocultan los íconos de redes).
 
 ## Cómo ejecutarlo
+
+Requiere **Node.js 20.3 o superior** (recomendado: 22 LTS).
+
+> En `package.json`, `overrides` fija `@astrojs/language-server` en 2.16.16: las versiones nuevas (usadas por `astro check`) necesitan Node 20.19+. Al pasar a Node 22 se puede quitar ese override.
 
 ```sh
 npm install
